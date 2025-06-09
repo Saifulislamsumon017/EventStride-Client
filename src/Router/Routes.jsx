@@ -1,6 +1,8 @@
+import MyDashboard from '@/DashboardPages/MyDashboard';
 import Dashboard from '@/Layout/Dashboard';
 import MainLayout from '@/Layout/MainLayout';
-import Home from '@/Pages/Home';
+import Home from '@/ManiPages/Home';
+
 import { Children, Component } from 'react';
 import { createBrowserRouter } from 'react-router';
 
@@ -8,15 +10,21 @@ export const router = createBrowserRouter([
   {
     path: '/',
     Component: MainLayout,
-    // Children: [
-    //   {
-    //     index: true,
-    //     Component: Home,
-    //   },
-    // ],
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+    ],
   },
   {
-    path: '/dashboard',
+    path: 'dashboard',
     Component: Dashboard,
+    children: [
+      {
+        index: true,
+        Component: MyDashboard,
+      },
+    ],
   },
 ]);
