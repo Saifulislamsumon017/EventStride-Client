@@ -5,8 +5,9 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
-import { FcGoogle } from 'react-icons/fc';
+
 import Login from '../assets/Lottie Files/LogIn Lottie.json';
+import SocialLogin from '@/components/AllComponents/SocialLogin';
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,17 +64,7 @@ const LogIn = () => {
                 LogIn
               </Button>
             </form>
-            <div class="flex py-3 items-center px-4 text-sm text-gray-800 gap-1 before:flex-1 before:border-t after:flex-1 after:border-t">
-              OR
-            </div>
-
-            <button
-              className="w-full flex gap-1 text-[18px] items-center justify-center shadow-2xl rounded-md py-1.5 border cursor-pointer "
-              type="submit"
-            >
-              <FcGoogle size={22} />
-              LogIn With Google
-            </button>
+            <SocialLogin />
 
             <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
               Don't Have An Account?

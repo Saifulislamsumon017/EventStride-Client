@@ -6,9 +6,10 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router';
-import { FcGoogle } from 'react-icons/fc';
+
 import AuthUser from '@/Hoocks/AuthUser';
 import { toast } from 'sonner';
+import SocialLogin from '@/components/AllComponents/SocialLogin';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +26,7 @@ const SignUp = () => {
       toast.error('Email and password are required');
       return;
     }
+
     if (password.length < 6) {
       toast.error('Password must be at least 6 characters long.');
       return;
@@ -40,7 +42,7 @@ const SignUp = () => {
       return;
     }
 
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`]/.test(password)) {
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>?~`]/.test(password)) {
       toast.error('Password must include at least one special character.');
       return;
     }
@@ -130,17 +132,7 @@ const SignUp = () => {
                 SignUp
               </Button>
             </form>
-            <div className="flex py-4 items-center px-4 text-sm text-gray-800 gap-1 before:flex-1 before:border-t after:flex-1 after:border-t">
-              OR
-            </div>
-
-            <button
-              className="w-full flex gap-1 text-[18px] items-center justify-center shadow-2xl rounded-md py-1.5 border cursor-pointer "
-              type="submit"
-            >
-              <FcGoogle size={22} />
-              SignUp With Google
-            </button>
+            <SocialLogin />
 
             <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
               Already Have An Account?
