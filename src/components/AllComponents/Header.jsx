@@ -4,9 +4,23 @@ import Logo from '../../assets/marathon.png';
 import { Button } from '../ui/button';
 import { FaMoon } from 'react-icons/fa';
 import AuthUser from '@/Hoocks/AuthUser';
+import { Avatar, AvatarImage } from '../ui/avatar';
+import { toast } from 'sonner';
 
 const Header = () => {
-  const user = false;
+  const { user, signOutUser } = AuthUser();
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log('signed out user');
+        toast.success('Successfully signed out!');
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error('Failed to sign out. Please try again.');
+      });
+  };
   return (
     <div className=" py-3 fixed w-full dark:bg-gray-800 dark:border-b-gray-600 border-b-gray-300 border-2 bg-white z-50">
       <div className="max-w-11/12 mx-auto flex justify-between items-center px-4 md:px-0">
@@ -41,7 +55,19 @@ const Header = () => {
             <FaMoon />
           </Button>
           {user ? (
-            <div></div>
+            <div className="flex gap-2">
+              <Avatar>
+                <AvatarImage
+                  src={user.photoURL || 'https://github.com/shadcn.png'}
+                  alt={user.displayName || 'User'}
+                />
+              </Avatar>
+              <Link to={'/login'}>
+                <Button onClick={handleSignOut} className="cursor-pointer">
+                  LogOut
+                </Button>
+              </Link>
+            </div>
           ) : (
             <div className=" md:flex gap-2">
               <Link to={'/login'}>

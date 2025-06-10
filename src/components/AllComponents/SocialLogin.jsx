@@ -1,7 +1,10 @@
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import { useLocation } from 'react-router';
 
 const SocialLogin = () => {
+  const location = useLocation();
+  const isSignUp = location.pathname === '/signup';
   return (
     <div>
       <div className="flex py-4 items-center px-4 text-sm text-gray-800 gap-1 before:flex-1 before:border-t after:flex-1 after:border-t">
@@ -13,7 +16,7 @@ const SocialLogin = () => {
         type="submit"
       >
         <FcGoogle size={22} />
-        SignUp With Google
+        {isSignUp ? 'SignUp With Google' : 'LogIn With Google'}
       </button>
     </div>
   );

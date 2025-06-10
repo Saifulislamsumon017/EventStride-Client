@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import AuthUser from '@/Hoocks/AuthUser';
 import { toast } from 'sonner';
@@ -13,14 +13,17 @@ import SocialLogin from '@/components/AllComponents/SocialLogin';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser } = AuthUser();
+  const { createUser, updateUserProfile } = AuthUser();
+  const navigate = useNavigate();
 
   const handleSignUp = e => {
     e.preventDefault();
     const form = e.target;
-
+    const firstName = form.FirstName.value;
+    const lastName = form.LastName.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photoURL = form.photoURL.value;
 
     if (!email || !password) {
       toast.error('Email and password are required');
@@ -50,15 +53,21 @@ const SignUp = () => {
     createUser(email, password)
       .then(result => {
         console.log(result.user);
-        toast.success('Account created successfully!');
-        form.reset();
+
+        updateUserProfile({
+          displayName: `${firstName} ${lastName}`,
+          photoURL: photoURL,
+        }).then(() => {
+          toast.success('Account created successfully!👋');
+          navigate('/');
+          form.reset();
+        });
       })
       .catch(error => {
         console.error(error);
         toast.error(error.message || 'Sign up failed');
       });
   };
-
   return (
     <div className=" max-w-11/12 mx-auto flex h-screen gap-5 md:pt-17 justify-center items-center">
       <div className="hidden md:block">
@@ -99,6 +108,16 @@ const SignUp = () => {
                     placeholder="Last Name"
                   />
                 </div>
+              </div>
+              <div>
+                <Label className="block w-full mb-2 pl-2">Profile Photo</Label>
+                <input
+                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  type="url"
+                  name="photoURL"
+                  placeholder="Profile Photo URL"
+                  required
+                />
               </div>
               <div>
                 <Label className="block w-full mb-2 pl-2">E-mail</Label>
