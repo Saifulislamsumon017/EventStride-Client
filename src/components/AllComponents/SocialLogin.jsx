@@ -5,17 +5,18 @@ import { toast } from 'sonner';
 import { useLocation, useNavigate } from 'react-router';
 import AuthUser from '@/Hoocks/AuthUser';
 
-const SocialLogin = () => {
+const SocialLogin = ({ from }) => {
   const { signInGoogle } = AuthUser();
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
+  // const from = location.state?.from?.pathname || '/';
   const isSignUp = location.pathname === '/signup';
 
   const handleSignInGoogle = () => {
     signInGoogle()
       .then(result => {
         const user = result.user;
+
         const displayName =
           user.displayName || user.email?.split('@')[0] || 'User';
         const firstName = displayName.split(' ')[0];
@@ -25,8 +26,7 @@ const SocialLogin = () => {
         } else {
           toast.success(`Logged in with Google! Welcome back, ${firstName} 👋`);
         }
-
-        navigate(from);
+        navigate(from || '/');
       })
       .catch(error => {
         console.error(error);

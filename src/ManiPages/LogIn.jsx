@@ -33,9 +33,9 @@ const LogIn = () => {
         const displayName =
           user.displayName || user.email?.split('@')[0] || 'User';
         const firstName = displayName.split(' ')[0];
-
+        navigate(from || '/');
         toast.success(`Welcome back, ${firstName}!`);
-        navigate(from);
+
         // form.reset();
       })
       .catch(error => {
@@ -96,7 +96,7 @@ const LogIn = () => {
                 LogIn
               </Button>
             </form>
-            <SocialLogin />
+            <SocialLogin from={from} />
 
             <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
               Don't Have An Account?

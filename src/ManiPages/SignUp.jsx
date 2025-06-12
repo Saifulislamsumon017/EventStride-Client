@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 
 import AuthUser from '@/Hoocks/AuthUser';
 import { toast } from 'sonner';
@@ -14,7 +14,9 @@ import SocialLogin from '@/components/AllComponents/SocialLogin';
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, updateUserProfile } = AuthUser();
+  const location = useLocation();
   const navigate = useNavigate();
+  const from = location.state || '/';
 
   const handleSignUp = e => {
     e.preventDefault();
@@ -59,7 +61,7 @@ const SignUp = () => {
           photoURL: photoURL,
         }).then(() => {
           toast.success('Account created successfully!👋');
-          navigate('/');
+          navigate(from || '/');
           form.reset();
         });
       })
@@ -151,7 +153,7 @@ const SignUp = () => {
                 SignUp
               </Button>
             </form>
-            <SocialLogin />
+            <SocialLogin from={from} />
 
             <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
               Already Have An Account?
