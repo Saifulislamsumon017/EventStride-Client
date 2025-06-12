@@ -1,6 +1,6 @@
 import AuthUser from '@/Hoocks/AuthUser';
 import React from 'react';
-import { useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = AuthUser();

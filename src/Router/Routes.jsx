@@ -9,6 +9,8 @@ import MarathonDetails from '@/Marathons/MarathonDetails';
 
 import { Children, Component } from 'react';
 import { createBrowserRouter } from 'react-router';
+import PrivateRoutes from './PrivateRoutes';
+import MarathonRegister from '@/Marathons/MarathonRegister';
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
         Component: MarathonDetails,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/marathons/${params.id}`),
+      },
+      {
+        path: '/marathonRegister/:id',
+        element: (
+          <PrivateRoutes>
+            <MarathonRegister />
+          </PrivateRoutes>
+        ),
       },
       {
         path: '/login',

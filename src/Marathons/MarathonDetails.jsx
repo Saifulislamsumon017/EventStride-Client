@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import AuthUser from '@/Hoocks/AuthUser';
 
 const MarathonDetails = () => {
@@ -157,12 +157,11 @@ const MarathonDetails = () => {
               You have already registered.
             </p>
           ) : isRegistrationOpen ? (
-            <button
-              onClick={() => (window.location.href = `/register/${_id}`)}
-              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
-            >
-              Register Now
-            </button>
+            <Link to={`/marathonRegister/${_id}`}>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+                Register Now
+              </button>
+            </Link>
           ) : (
             <p className="text-red-600 font-semibold">Registration Closed</p>
           )}
