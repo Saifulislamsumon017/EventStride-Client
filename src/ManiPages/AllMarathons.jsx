@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router';
 
 const AllMarathons = () => {
   const marathons = useLoaderData();
-  console.log(marathons);
+  // console.log(marathons);
 
   return (
     <div className="w-11/12 mx-auto py-20">
