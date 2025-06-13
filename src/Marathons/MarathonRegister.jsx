@@ -6,21 +6,49 @@ import React from 'react';
 import { useParams } from 'react-router';
 import marathonRegiste from '../assets/Lottie Files/maratonRegister.json';
 import { Button } from '@/components/ui/button';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const MarathonRegister = () => {
   const { id: marathonId } = useParams();
 
   const { user } = AuthUser();
 
-  console.log(marathonId, user);
+  // console.log(marathonId, user);
 
   const handelRegister = e => {
     e.preventDefault();
     const form = e.target;
     const facebook = form.facebook.value;
-    console.log(facebook);
-  };
 
+    if (!facebook) {
+      toast.error('Please provide your Facebook profile link.');
+      return;
+    }
+
+    const registrationData = {
+      marathonId,
+      applicant: user.email,
+      facebook,
+    };
+
+    axios
+      .post('http://localhost:3000/registarion', registrationData)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          toast.success('Successfully registered for the marathon!');
+        }
+
+        form.reset();
+        // Optionally navigate to "My Registrations" page
+        // navigate('/my-apply');
+      })
+      .catch(error => {
+        console.error(error);
+        toast.error('Registration failed. Please try again.');
+      });
+  };
   return (
     <div className=" max-w-11/12 mx-auto flex h-screen gap-5  justify-center items-center">
       <div>

@@ -163,7 +163,12 @@ const MarathonDetails = () => {
               </button>
             </Link>
           ) : (
-            <p className="text-red-600 font-semibold">Registration Closed</p>
+            <button
+              disabled
+              className="inline-block bg-red-800 text-white px-6 py-2 rounded cursor-not-allowed"
+            >
+              Registration Closed
+            </button>
           )}
         </div>
       </div>

@@ -1,7 +1,15 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
-  return <div> hellow I am Home</div>;
+  return (
+    <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
+      Home
+    </div>
+  );
 };
 
 export default Home;

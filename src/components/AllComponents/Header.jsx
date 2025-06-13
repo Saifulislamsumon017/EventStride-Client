@@ -56,6 +56,16 @@ const Header = () => {
           >
             Dashboard
           </NavLink>
+          {user && (
+            <>
+              <NavLink
+                to="/dashboard/myRegistration"
+                className={({ isActive }) => (isActive ? 'text-[#c0122d]' : '')}
+              >
+                My Registrations
+              </NavLink>
+            </>
+          )}
         </nav>
 
         {/* Theme + User/Auth */}

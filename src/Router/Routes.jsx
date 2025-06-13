@@ -11,6 +11,9 @@ import { Children, Component } from 'react';
 import { createBrowserRouter } from 'react-router';
 import PrivateRoutes from './PrivateRoutes';
 import MarathonRegister from '@/Marathons/MarathonRegister';
+import MyRegistrations from '@/ManiPages/MyRegistrations';
+
+import { marathonsLoader } from '@/All API/marathonsApi';
 
 export const router = createBrowserRouter([
   {
@@ -21,12 +24,27 @@ export const router = createBrowserRouter([
         index: true,
         Component: Home,
       },
+
       {
-        path: 'marathons',
+        path: '/marathons',
         Component: AllMarathons,
-        loader: () =>
-          fetch('http://localhost:3000/marathons?sort=desc&limit=100'),
+        loader: marathonsLoader,
       },
+
+      // {
+      //   path: '/marathons',
+      //   Component: AllMarathons,
+      //   loader: async ({ request }) => {
+      //     const url = new URL(request.url);
+      //     const sort = url.searchParams.get('sort') || 'desc';
+      //     const limit = url.searchParams.get('limit') || '9';
+
+      //     const res = await fetch(
+      //       `http://localhost:3000/marathons?sort=${sort}&limit=${limit}`
+      //     );
+      //     return res.json();
+      //   },
+      // },
       {
         path: '/marathons/:id',
         Component: MarathonDetails,
@@ -58,6 +76,15 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: MyDashboard,
+      },
+
+      {
+        path: '/dashboard/myRegistration',
+        element: (
+          <PrivateRoutes>
+            <MyRegistrations />
+          </PrivateRoutes>
+        ),
       },
     ],
   },
