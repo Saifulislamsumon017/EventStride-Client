@@ -31,20 +31,6 @@ export const router = createBrowserRouter([
         loader: marathonsLoader,
       },
 
-      // {
-      //   path: '/marathons',
-      //   Component: AllMarathons,
-      //   loader: async ({ request }) => {
-      //     const url = new URL(request.url);
-      //     const sort = url.searchParams.get('sort') || 'desc';
-      //     const limit = url.searchParams.get('limit') || '9';
-
-      //     const res = await fetch(
-      //       `http://localhost:3000/marathons?sort=${sort}&limit=${limit}`
-      //     );
-      //     return res.json();
-      //   },
-      // },
       {
         path: '/marathons/:id',
         Component: MarathonDetails,

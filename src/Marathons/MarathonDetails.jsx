@@ -4,6 +4,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 import { Link, useLoaderData } from 'react-router';
 import AuthUser from '@/Hoocks/AuthUser';
+import { Helmet } from 'react-helmet-async';
 
 const MarathonDetails = () => {
   const marathon = useLoaderData();
@@ -61,6 +62,9 @@ const MarathonDetails = () => {
   return (
     <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8 items-center">
       {/* Image */}
+      <Helmet>
+        <title>All Marathons | {title}</title>
+      </Helmet>
       <div className="rounded-2xl overflow-hidden shadow-xl">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>

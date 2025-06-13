@@ -1,13 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Home</title>
+        <title>Home | EventStride</title>
       </Helmet>
-      Home
     </div>
   );
 };

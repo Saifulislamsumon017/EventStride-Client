@@ -1,6 +1,7 @@
 import SingleCard from '@/Marathons/SingleCard';
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
+
 import { useLoaderData, useLocation, useNavigate } from 'react-router';
 
 const AllMarathons = () => {
@@ -30,7 +31,7 @@ const AllMarathons = () => {
   return (
     <div className="w-11/12 mx-auto py-20">
       <Helmet>
-        <title>All Marathons</title>
+        <title>All Marathons | EventStride</title>
       </Helmet>
 
       <h1 className="text-4xl mb-6 text-center">All Marathons</h1>
