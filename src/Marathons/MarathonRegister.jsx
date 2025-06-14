@@ -74,7 +74,7 @@ const MarathonRegister = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto flex h-screen gap-5 justify-center items-center">
+    <div className="max-w-11/12 mx-auto flex py-20 gap-5 justify-center items-center">
       <div>
         <Lottie
           className="w-[600px] h-full"

@@ -7,7 +7,7 @@ const MyRegistrationsList = ({ myRegistration }) => {
   console.log(registrations);
   return (
     <div className=" w-11/12 mx-auto py-20 overflow-x-auto">
-      <div className="hidden md:block">
+      <div className="hidden md:block ml-[320px] h-screen">
         <table className="min-w-full border border-gray-200">
           <thead>
             <tr className="bg-gray-100 text-left">

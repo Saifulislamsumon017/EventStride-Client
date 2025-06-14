@@ -15,6 +15,7 @@ import MarathonRegister from '@/Marathons/MarathonRegister';
 import { marathonsLoader } from '@/All API/marathonsApi';
 import MyRegistrations from '@/My Registration/MyRegistrations';
 import AddMarathon from '@/Marathons/AddMarathon';
+import MyMarathonList from '@/Marathons/MyMarathonList';
 
 export const router = createBrowserRouter([
   {
@@ -65,12 +66,27 @@ export const router = createBrowserRouter([
         Component: MyDashboard,
       },
       {
-        path: 'addmarathon',
-        Component: AddMarathon,
+        path: 'dashboard/addmarathon',
+
+        element: (
+          <PrivateRoutes>
+            <AddMarathon />
+          </PrivateRoutes>
+        ),
       },
 
       {
-        path: '/dashboard/myRegistration',
+        path: 'dashboard/my-marathon',
+
+        element: (
+          <PrivateRoutes>
+            <MyMarathonList />
+          </PrivateRoutes>
+        ),
+      },
+
+      {
+        path: 'dashboard/myRegistration',
         element: (
           <PrivateRoutes>
             <MyRegistrations />
