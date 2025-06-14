@@ -1,13 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 const MyDashboard = () => {
   return (
-    <div>
+    <div className="w-11/12 mx-auto flex">
       <Helmet>
-        <title> MyDashboard </title>
+        <title> Dashboard | MyDashboard </title>
       </Helmet>
-      MyDashboard
     </div>
   );
 };

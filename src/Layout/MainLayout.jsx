@@ -12,8 +12,10 @@ const MainLayout = () => {
       </header>
       <main className="min-h-screen">
         <Outlet />
+
+        <Toaster position="top-right" duration={4000} />
       </main>
-      <Toaster position="top-right" duration={4000} />
+
       <footer>
         <Footer />
       </footer>

@@ -1,6 +1,6 @@
 import SingleCard from '@/Marathons/SingleCard';
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 import { useLoaderData, useLocation, useNavigate } from 'react-router';
 

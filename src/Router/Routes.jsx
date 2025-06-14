@@ -11,9 +11,10 @@ import { Children, Component } from 'react';
 import { createBrowserRouter } from 'react-router';
 import PrivateRoutes from './PrivateRoutes';
 import MarathonRegister from '@/Marathons/MarathonRegister';
-import MyRegistrations from '@/ManiPages/MyRegistrations';
 
 import { marathonsLoader } from '@/All API/marathonsApi';
+import MyRegistrations from '@/My Registration/MyRegistrations';
+import AddMarathon from '@/Marathons/AddMarathon';
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: MyDashboard,
+      },
+      {
+        path: 'addmarathon',
+        Component: AddMarathon,
       },
 
       {

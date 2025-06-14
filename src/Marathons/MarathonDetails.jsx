@@ -4,7 +4,7 @@ import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
 import { Link, useLoaderData } from 'react-router';
 import AuthUser from '@/Hoocks/AuthUser';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 const MarathonDetails = () => {
   const marathon = useLoaderData();

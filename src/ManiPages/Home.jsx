@@ -1,9 +1,9 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
   return (
-    <div>
+    <div className="w-11/12 mx-auto">
       <Helmet>
         <title>Home | EventStride</title>
       </Helmet>
