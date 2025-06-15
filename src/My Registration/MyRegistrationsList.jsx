@@ -8,6 +8,12 @@ const MyRegistrationsList = ({ myRegistration }) => {
   return (
     <div className=" w-11/12 mx-auto py-20 overflow-x-auto">
       <div className="hidden md:block ml-[320px] h-screen">
+        <div className="flex justify-center mb-8">
+          <input
+            placeholder="organizer@example.com"
+            className="dark:border-gray-600 dark:bg-gray-900 w-1/2 font-abel border pl-2 py-2 rounded"
+          />
+        </div>
         <table className="min-w-full border border-gray-200">
           <thead>
             <tr className="bg-gray-100 text-left">

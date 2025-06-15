@@ -7,10 +7,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Lottie from 'lottie-react';
 import Animation from '../assets/Lottie Files/Animation.json';
 import AuthUser from '@/Hoocks/AuthUser';
-<assets />;
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 const AddMarathon = () => {
   const { user } = AuthUser();
+  const navigate = useNavigate();
   const [startReg, setStartReg] = useState(null);
   const [endReg, setEndReg] = useState(null);
   const [marathonStart, setMarathonStart] = useState(null);
@@ -20,7 +24,7 @@ const AddMarathon = () => {
     e.preventDefault();
     const form = e.target;
 
-    const newMarathon = {
+    const addMarathon = {
       title: form.title.value,
       registrationStartDate: startReg?.toISOString().split('T')[0],
       registrationEndDate: endReg?.toISOString().split('T')[0],
@@ -34,27 +38,41 @@ const AddMarathon = () => {
       createdAt: form.createdAt.value,
     };
 
-    console.log(newMarathon);
+    console.log(addMarathon);
 
-    // Optional: Send to server
-    /*
-    try {
-      const res = await fetch('http://localhost:3000/marathons', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newMarathon),
+    // svae data api
+
+    axios
+      .post('http://localhost:3000/marathons', addMarathon)
+      .then(res => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Successfully registered!',
+            text: 'The marathon has been successfully added.',
+            confirmButtonColor: '#10b981',
+            position: 'top-end',
+            width: '20em',
+            showConfirmButton: true,
+            toast: true,
+            timer: 4000,
+            timerProgressBar: true,
+          }).then(() => {
+            form.reset();
+            navigate('/marathons');
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
       });
-
-      const result = await res.json();
-      console.log(result);
-    } catch (err) {
-      console.error('Error submitting marathon:', err);
-    }
-    */
   };
 
   return (
     <div className="flex flex-col md:flex-row ml-0 md:ml-[320px]">
+      <Helmet>
+        <title>Dashboard | Add Marathon</title>
+      </Helmet>
       <div className="w-full md:w-[450px]">
         <Lottie
           className="w-full h-full"
@@ -63,7 +81,7 @@ const AddMarathon = () => {
         />
       </div>
 
-      <div className="flex-1 flex justify-center items-center pt-10">
+      <div className="flex-1 flex justify-center items-center pt-20">
         <Card className="w-full max-w-[600px] mx-auto shadow rounded-2xl dark:bg-gray-800 dark:border-gray-600">
           <CardHeader>
             <CardTitle>

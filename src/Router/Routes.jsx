@@ -16,6 +16,7 @@ import { marathonsLoader } from '@/All API/marathonsApi';
 import MyRegistrations from '@/My Registration/MyRegistrations';
 import AddMarathon from '@/Marathons/AddMarathon';
 import MyMarathonList from '@/Marathons/MyMarathonList';
+import MyAllMarathons from '@/Marathons/MyAllMarathons';
 
 export const router = createBrowserRouter([
   {
@@ -80,7 +81,8 @@ export const router = createBrowserRouter([
 
         element: (
           <PrivateRoutes>
-            <MyMarathonList />
+            <MyAllMarathons />
+            {/* <MyMarathonList /> */}
           </PrivateRoutes>
         ),
       },

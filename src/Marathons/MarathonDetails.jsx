@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-
 import { Link, useLoaderData } from 'react-router';
 import AuthUser from '@/Hoocks/AuthUser';
 import { Helmet } from 'react-helmet';
 
 const MarathonDetails = () => {
   const marathon = useLoaderData();
-  const { user } = AuthUser;
+  const { user } = AuthUser();
 
   const {
     _id,
@@ -28,7 +26,6 @@ const MarathonDetails = () => {
   const [durationInSeconds, setDurationInSeconds] = useState(0);
   const [registrationCount, setRegistrationCount] = useState(0);
 
-  // Check registration period
   useEffect(() => {
     const now = new Date();
     const regStart = new Date(registrationStartDate);
@@ -39,37 +36,31 @@ const MarathonDetails = () => {
     setDurationInSeconds(Math.floor((marathonStart - now) / 1000));
   }, [registrationStartDate, registrationEndDate, marathonStartDate]);
 
-  // Check if user has already registered
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(
-      `https://your-api.com/registrations?marathonId=${_id}&email=${user.email}`
-    )
+    fetch(`http://localhost:3000/registration?email=${user.email}`)
       .then(res => res.json())
       .then(data => {
-        if (data?.length > 0) setHasRegistered(true);
+        const alreadyRegistered = data.some(r => r.marathonId === _id);
+        setHasRegistered(alreadyRegistered);
       });
 
-    // Fetch registration count
-    fetch(`https://your-api.com/registrations/count?marathonId=${_id}`)
+    fetch(`http://localhost:3000/registrations/count?marathonId=${_id}`)
       .then(res => res.json())
       .then(data => setRegistrationCount(data?.count || 0));
   }, [_id, user?.email]);
 
-  const remaining = durationInSeconds;
-
   return (
     <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8 items-center">
-      {/* Image */}
       <Helmet>
         <title>All Marathons | {title}</title>
       </Helmet>
+
       <div className="rounded-2xl overflow-hidden shadow-xl">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
 
-      {/* Content */}
       <div className="space-y-4">
         <h1 className="text-4xl font-bold text-blue-700">{title}</h1>
         <p>
@@ -86,13 +77,11 @@ const MarathonDetails = () => {
           Total Registered: {registrationCount}
         </p>
 
-        {/* Countdown Watch Style */}
         <div className="flex justify-center gap-4 mt-8">
-          {/* Days */}
           <CountdownCircleTimer
             isPlaying
-            duration={remaining}
-            initialRemainingTime={remaining}
+            duration={durationInSeconds}
+            initialRemainingTime={durationInSeconds}
             colors="#0D9488"
             size={100}
             strokeWidth={10}
@@ -109,11 +98,10 @@ const MarathonDetails = () => {
             }}
           </CountdownCircleTimer>
 
-          {/* Hours */}
           <CountdownCircleTimer
             isPlaying
             duration={86400}
-            initialRemainingTime={remaining % 86400}
+            initialRemainingTime={durationInSeconds % 86400}
             colors="#F59E0B"
             size={100}
             strokeWidth={10}
@@ -131,11 +119,10 @@ const MarathonDetails = () => {
             }}
           </CountdownCircleTimer>
 
-          {/* Minutes */}
           <CountdownCircleTimer
             isPlaying
             duration={3600}
-            initialRemainingTime={remaining % 3600}
+            initialRemainingTime={durationInSeconds % 3600}
             colors="#EF4444"
             size={100}
             strokeWidth={10}
@@ -154,7 +141,6 @@ const MarathonDetails = () => {
           </CountdownCircleTimer>
         </div>
 
-        {/* Register Button Logic */}
         <div className="mt-6">
           {hasRegistered ? (
             <p className="text-yellow-600 font-medium">
@@ -169,7 +155,7 @@ const MarathonDetails = () => {
           ) : (
             <button
               disabled
-              className="inline-block bg-red-800 text-white px-6 py-2 rounded cursor-not-allowed"
+              className="bg-red-800 text-white px-6 py-2 rounded cursor-not-allowed"
             >
               Registration Closed
             </button>

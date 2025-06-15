@@ -3,7 +3,6 @@ export const marathonsLoader = ({ request }) => {
   const sort = url.searchParams.get('sort') || 'desc';
   const limit = url.searchParams.get('limit') || '9';
 
-  return fetch(
-    `http://localhost:3000/marathons?sort=${sort}&limit=${limit}`
-  ).then(res => res.json());
+  const endpoint = `http://localhost:3000/marathons?sort=${sort}&limit=${limit}`;
+  return fetch(endpoint).then(res => res.json());
 };
