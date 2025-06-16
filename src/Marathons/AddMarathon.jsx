@@ -106,31 +106,33 @@ const AddMarathon = () => {
 
               <div className="flex flex-col md:flex-row md:justify-between gap-4">
                 <div className="flex-1">
-                  <Label className="pl-2 py-2">Start Registration</Label>
+                  <Label className="pl-2 py-2 block">Start Registration</Label>
                   <DatePicker
                     selected={startReg}
                     onChange={date => setStartReg(date)}
-                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-3 py-2 rounded box-border h-10"
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded box-border h-10"
                     placeholderText="Start Date"
                     required
                   />
                 </div>
+
                 <div className="flex-1">
-                  <Label className="pl-2 py-2">End Registration</Label>
+                  <Label className="pl-2 py-2 block">End Registration</Label>
                   <DatePicker
                     selected={endReg}
                     onChange={date => setEndReg(date)}
-                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-3 py-2 rounded box-border h-10"
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded box-border h-10"
                     placeholderText="End Date"
                     required
                   />
                 </div>
+
                 <div className="flex-1">
-                  <Label className="pl-2 py-2">Marathon Start Date</Label>
+                  <Label className="pl-2 py-2 block">Marathon Start Date</Label>
                   <DatePicker
                     selected={marathonStart}
                     onChange={date => setMarathonStart(date)}
-                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded box-border h-10"
                     placeholderText="Marathon Date"
                     required
                   />

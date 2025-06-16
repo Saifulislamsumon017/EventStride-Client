@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Sunset Coast Marathon",
+    "registrationStartDate": "2025-06-15",
+    "registrationEndDate": "2025-07-10",
+    "marathonStartDate": "2025-07-20",
+    "location": "Santa Monica, CA",
+    "distance": "10km",
+    "description": "Enjoy an oceanfront run during the golden hour.",
+    "image": "https://i.postimg.cc/26RgCBqP/Sunset-Coast-Marathon.webp",
+    "companyName": "PulseTrack Events",
+    "userEmail": "info@pulsetrack.com",
+    "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Capital City Run 2025",
+    "registrationStartDate": "2025-06-20",
+    "registrationEndDate": "2025-07-15",
+    "marathonStartDate": "2025-07-30",
+    "location": "Washington, D.C.",
+    "distance": "15km",
+    "description": "Dash past monuments and history in the nation's capital.",
+    "image": "https://i.postimg.cc/prkSQG0H/Capital-City-Run.webp",
+    "companyName": "MarathonWorld Co.",
+    "userEmail": "events@marathonworld.com",
+    "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Pacific Trail Run",
+    "registrationStartDate": "2025-06-25",
+    "registrationEndDate": "2025-07-18",
+    "marathonStartDate": "2025-08-01",
+    "location": "Seattle, WA",
+    "distance": "21km",
+    "description": "Forest, mountains, and sea all in one unforgettable race.",
+    "image": "https://i.postimg.cc/ry97LsqP/Pacific-Trail-Run.webp",
+    "companyName": "SprintMasters Inc.",
+    "userEmail": "organizer@sprintmasters.com",
+    "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Big Apple Marathon",
+    "registrationStartDate": "2025-07-01",
+    "registrationEndDate": "2025-07-25",
+    "marathonStartDate": "2025-08-10",
+    "location": "New York City, NY",
+    "distance": "42km",
+    "description": "Take on the iconic marathon through NYC's five boroughs.",
+    "image": "https://i.postimg.cc/XJb1RSmW/Big-Apple-Marathon.webp",
+    "companyName": "UrbanMotion Sports",
+    "userEmail": "admin@urbanmotion.com",
+    "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Desert Heat Run",
+    "registrationStartDate": "2025-07-10",
+    "registrationEndDate": "2025-08-01",
+    "marathonStartDate": "2025-08-20",
+    "location": "Las Vegas, NV",
+    "distance": "10km",
+    "description": "Blaze through a nighttime desert track lit by neon lights.",
+    "image": "https://i.postimg.cc/GmTM9m1r/Desert-Heat-Run.webp",
+    "companyName": "PeakPace Runners",
+    "userEmail": "contact@peakpace.com",
+    "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Lakeside Sprint",
+    "registrationStartDate": "2025-07-15",
+    "registrationEndDate": "2025-08-10",
+    "marathonStartDate": "2025-08-25",
+    "location": "Lake Michigan, IL",
+    "distance": "8km",
+    "description": "Sprint alongside Chicago’s stunning lakefront path.",
+    "image": "https://i.postimg.cc/HnLzmptq/Lakeside-Sprint.webp",
+    "companyName": "PulseTrack Events",
+    "userEmail": "info@pulsetrack.com",
+    "createdAt": "2025-06-11"
+  }
+]

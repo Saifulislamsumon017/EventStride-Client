@@ -48,6 +48,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
+
       {
         path: '/login',
         Component: LogIn,

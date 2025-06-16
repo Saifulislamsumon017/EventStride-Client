@@ -11,7 +11,7 @@ const Dashboard = () => {
       <header>
         <Header />
       </header>
-      <main className="min-h-[calc(100vh-150px)] flex">
+      <main className="min-h-screen flex">
         <Sidebar />
         <div className="flex-1">
           <Outlet />

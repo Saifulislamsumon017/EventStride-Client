@@ -1,9 +1,47 @@
+import Modal from '@/components/AllComponents/Modal';
+import { Button } from '@/components/ui/button';
 import React from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const MarathonRaw = ({ marathon, index }) => {
-  const { image, companyName, location, title, marathonStartDate } = marathon;
+  const { _id, image, companyName, location, title, marathonStartDate } =
+    marathon;
+
+  const handleDelete = _id => {
+    console.log(_id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      console.log(result.isConfirmed);
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/marathons/${_id}`, {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'Application/json',
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+          });
+      }
+    });
+  };
+
   return (
     <tr>
       <td className="px-4 py-3 border">{index + 1}</td>
@@ -17,20 +55,21 @@ const MarathonRaw = ({ marathon, index }) => {
       <td className="px-4 py-3 border">{location}</td>
       <td className="px-4 py-3 border">{marathonStartDate}</td>
       <td className="px-4 py-3 flex justify-center items-center  gap-3 border">
-        <button
+        {/* <button
           // onClick={handleUpdate}
           className="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
         >
           <FaRegEdit className="inline mr-1" />
           Update
-        </button>
-        <button
-          // onClick={handleDelete}
+        </button> */}
+        <Modal marathon={marathon} />
+        <Button
+          onClick={() => handleDelete(_id)}
           className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
         >
-          <RiDeleteBin6Line className="inline mr-1" />
+          <RiDeleteBin6Line className="inline" />
           Delete
-        </button>
+        </Button>
       </td>
     </tr>
   );

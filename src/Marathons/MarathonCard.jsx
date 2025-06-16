@@ -1,9 +1,44 @@
 import React from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const MarathonCard = ({ marathon }) => {
-  const { image, companyName, location, title, marathonStartDate } = marathon;
+  const { _id, image, companyName, location, title, marathonStartDate } =
+    marathon;
+
+  const handleDelete = _id => {
+    console.log(_id);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      console.log(result.isConfirmed);
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/marathons/${_id}`, {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'Application/json',
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your file has been deleted.',
+                icon: 'success',
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="p-4 border rounded-lg shadow-sm text-sm w-full text-black transition">
       <img
@@ -33,7 +68,7 @@ const MarathonCard = ({ marathon }) => {
           Update
         </button>
         <button
-          // onClick={handleDelete}
+          onClick={() => handleDelete(_id)}
           className="px-3 py-2 flex items-center bg-red-500 text-white text-sm rounded hover:bg-red-600"
         >
           <RiDeleteBin6Line className="inline mr-1" />
