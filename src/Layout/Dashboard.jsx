@@ -18,7 +18,7 @@ const Dashboard = () => {
         </div>
         <Toaster position="top-right" duration={4000} />
       </main>
-      <footer>
+      <footer className="z-50">
         <Footer />
       </footer>
     </>

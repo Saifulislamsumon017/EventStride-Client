@@ -2,15 +2,17 @@ import React from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import RegistrationModal from './RegistrationModal';
+import { Button } from '@/components/ui/button';
 
-const RegistrationRaw = ({ registration, index }) => {
+const RegistrationRaw = ({
+  registration,
+  index,
+  registrations,
+  setRegistrations,
+}) => {
   const { _id, marathonTitle, marathonStartDate, firstName, location, image } =
     registration;
-
-  // const handleUpdate = () => {
-  //   console.log('Update clicked', registration);
-  //   // Open modal or navigate to update form
-  // };
 
   const handleDelete = _id => {
     console.log(_id);
@@ -39,6 +41,12 @@ const RegistrationRaw = ({ registration, index }) => {
                 text: 'Your file has been deleted.',
                 icon: 'success',
               });
+
+              //Remove Data from UI
+              const remainingRegistrations = registrations.filter(
+                registration => registration._id !== _id
+              );
+              setRegistrations(remainingRegistrations);
             }
           });
       }
@@ -57,20 +65,14 @@ const RegistrationRaw = ({ registration, index }) => {
       <td className="px-4 py-3 border">{location}</td>
       <td className="px-4 py-3 border">{marathonStartDate}</td>
       <td className="px-4 py-3 flex justify-center items-center  gap-3 border">
-        <button
-          // onClick={handleUpdate}
-          className="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-        >
-          <FaRegEdit className="inline mr-1" />
-          Update
-        </button>
-        <button
+        <RegistrationModal registration={registration} />
+        <Button
           onClick={() => handleDelete(_id)}
           className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
         >
-          <RiDeleteBin6Line className="inline mr-1" />
+          <RiDeleteBin6Line className="inline" />
           Delete
-        </button>
+        </Button>
       </td>
     </tr>
   );

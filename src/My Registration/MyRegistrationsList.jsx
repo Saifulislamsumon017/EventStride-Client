@@ -1,10 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import RegistrationRaw from './RegistrationRaw';
 import RegistrationCard from './RegistrationCard';
 
 const MyRegistrationsList = ({ myRegistration }) => {
-  const registrations = use(myRegistration);
-  console.log(registrations);
+  const initialRegistrations = use(myRegistration);
+
+  const [registrations, setRegistrations] = useState(initialRegistrations);
   return (
     <div className=" w-11/12 mx-auto overflow-x-auto">
       <div className="hidden md:block ml-[320px] h-screen">
@@ -28,6 +29,8 @@ const MyRegistrationsList = ({ myRegistration }) => {
                 key={registration._id}
                 registration={registration}
                 index={index}
+                registrations={registrations}
+                setRegistrations={setRegistrations}
               ></RegistrationRaw>
             ))}
           </tbody>
@@ -39,6 +42,8 @@ const MyRegistrationsList = ({ myRegistration }) => {
             key={registration._id}
             registration={registration}
             index={index}
+            registrations={registrations}
+            setRegistrations={setRegistrations}
           />
         ))}
       </div>

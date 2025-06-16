@@ -83,7 +83,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <MyAllMarathons />
-            {/* <MyMarathonList /> */}
           </PrivateRoutes>
         ),
       },

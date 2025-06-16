@@ -1,9 +1,11 @@
+import Modal from '@/components/AllComponents/Modal';
+import { Button } from '@/components/ui/button';
 import React from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 
-const MarathonCard = ({ marathon }) => {
+const MarathonCard = ({ marathon, marathons, setMarathons }) => {
   const { _id, image, companyName, location, title, marathonStartDate } =
     marathon;
 
@@ -34,6 +36,11 @@ const MarathonCard = ({ marathon }) => {
                 text: 'Your file has been deleted.',
                 icon: 'success',
               });
+              //Remove Data from UI
+              const remainingMarathons = marathons.filter(
+                marathon => marathon._id !== _id
+              );
+              setMarathons(remainingMarathons);
             }
           });
       }
@@ -60,20 +67,14 @@ const MarathonCard = ({ marathon }) => {
         </h3>
       </div>
       <div className="flex justify-between py-4">
-        <button
-          // onClick={handleUpdate}
-          className="px-3 py-2 flex items-center bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-        >
-          <FaRegEdit className="inline mr-1" />
-          Update
-        </button>
-        <button
+        <Modal marathon={marathon} />
+        <Button
           onClick={() => handleDelete(_id)}
           className="px-3 py-2 flex items-center bg-red-500 text-white text-sm rounded hover:bg-red-600"
         >
-          <RiDeleteBin6Line className="inline mr-1" />
+          <RiDeleteBin6Line className="inline" />
           Delete
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const MarathonRegister = () => {
             timerProgressBar: true,
           }).then(() => {
             form.reset();
-            navigate('/dashboard/myRegistration');
+            navigate('/dashboard/dashboard/myRegistration');
           });
         }
       })

@@ -16,6 +16,8 @@ import AuthUser from '@/Hoocks/AuthUser';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Button } from '../ui/button';
+import { Link, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Modal = ({ marathon, refetch }) => {
   const {
@@ -33,6 +35,7 @@ const Modal = ({ marathon, refetch }) => {
   } = marathon;
 
   const { user } = AuthUser();
+  const navigate = useNavigate();
 
   const [startReg, setStartReg] = useState(new Date(registrationStartDate));
   const [endReg, setEndReg] = useState(new Date(registrationEndDate));
@@ -41,7 +44,7 @@ const Modal = ({ marathon, refetch }) => {
   );
   const [distance, setDistance] = useState(initialDistance || '10k');
 
-  const hendelUpdatedMarathon = e => {
+  const handleUpdatedMarathon = e => {
     e.preventDefault();
     const form = e.target;
 
@@ -57,6 +60,7 @@ const Modal = ({ marathon, refetch }) => {
       registrationEndDate: endReg?.toISOString(),
       marathonStartDate: marathonStart?.toISOString(),
     };
+
     console.log(updatedMarathon);
 
     fetch(`http://localhost:3000/marathons/${_id}`, {
@@ -68,16 +72,26 @@ const Modal = ({ marathon, refetch }) => {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.modifiedCount > 0) {
-          alert('Marathon updated successfully!');
+        console.log(result);
+        if (result.modifiedCount) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Marathon updated successfully!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/marathons');
           refetch && refetch();
-        } else {
-          alert('No changes were made.');
         }
       })
       .catch(error => {
         console.error('Error updating marathon:', error);
-        alert('Something went wrong. Please try again.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong. Please try again!',
+        });
       });
   };
 
@@ -100,7 +114,7 @@ const Modal = ({ marathon, refetch }) => {
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={hendelUpdatedMarathon}>
+        <form onSubmit={handleUpdatedMarathon}>
           <div className="flex gap-4">
             <div className="w-1/2">
               <Label className="pl-2 py-2">Marathon Title</Label>
@@ -222,14 +236,17 @@ const Modal = ({ marathon, refetch }) => {
               required
             ></textarea>
           </div>
+
+          <div className="flex gap-4 py-6">
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+
+            <Button type="submit">Save changes</Button>
+          </div>
         </form>
 
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+        <DialogFooter></DialogFooter>
       </DialogContent>
     </Dialog>
   );

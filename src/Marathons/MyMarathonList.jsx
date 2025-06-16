@@ -1,9 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import MarathonRaw from './MarathonRaw';
 import MarathonCard from './MarathonCard';
 
 const MyMarathonList = ({ myMarathonsLoader }) => {
-  const marathons = use(myMarathonsLoader);
+  const initialmarathons = use(myMarathonsLoader);
+  const [marathons, setMarathons] = useState(initialmarathons);
+
   console.log(marathons);
   return (
     <div className=" w-11/12 mx-auto py-20 overflow-x-auto">
@@ -28,6 +30,8 @@ const MyMarathonList = ({ myMarathonsLoader }) => {
                 key={marathon._id}
                 marathon={marathon}
                 index={index}
+                marathons={marathons}
+                setMarathons={setMarathons}
               ></MarathonRaw>
             ))}
           </tbody>
@@ -35,7 +39,13 @@ const MyMarathonList = ({ myMarathonsLoader }) => {
       </div>
       <div className="block md:hidden space-y-4 mt-5">
         {marathons.map((marathon, index) => (
-          <MarathonCard key={marathon._id} marathon={marathon} index={index} />
+          <MarathonCard
+            key={marathon._id}
+            marathon={marathon}
+            index={index}
+            marathons={marathons}
+            setMarathons={setMarathons}
+          />
         ))}
       </div>
     </div>

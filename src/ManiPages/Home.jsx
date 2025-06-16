@@ -1,8 +1,7 @@
-// import { marathonsLoader } from '@/All API/marathonsApi';
 import HeroBanner from '@/components/AllComponents/HeroBanner';
+
+import MarathonSection from '@/components/AllComponents/MarathonSection';
 import UpcomingMarathon from '@/components/AllComponents/UpcomingMarathon';
-// import Loading from '@/components/AllComponents/Loading';
-// import MarathonSection from '@/components/AllComponents/MarathonSection';
 
 import React, { Suspense } from 'react';
 import { Helmet } from 'react-helmet';
@@ -14,9 +13,9 @@ const Home = () => {
         <title>Home | EventStride</title>
       </Helmet>
       <HeroBanner />
-      {/* <Suspense fallback={<Loading />}>
-        <MarathonSection marathonsLoader={marathonsLoader} />
-      </Suspense> */}
+
+      <MarathonSection />
+
       <UpcomingMarathon />
     </div>
   );

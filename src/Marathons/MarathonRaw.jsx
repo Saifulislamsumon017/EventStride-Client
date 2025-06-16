@@ -5,7 +5,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 
-const MarathonRaw = ({ marathon, index }) => {
+const MarathonRaw = ({ marathon, index, marathons, setMarathons }) => {
   const { _id, image, companyName, location, title, marathonStartDate } =
     marathon;
 
@@ -36,6 +36,11 @@ const MarathonRaw = ({ marathon, index }) => {
                 text: 'Your file has been deleted.',
                 icon: 'success',
               });
+              //Remove Data from UI
+              const remainingMarathons = marathons.filter(
+                marathon => marathon._id !== _id
+              );
+              setMarathons(remainingMarathons);
             }
           });
       }
@@ -55,13 +60,6 @@ const MarathonRaw = ({ marathon, index }) => {
       <td className="px-4 py-3 border">{location}</td>
       <td className="px-4 py-3 border">{marathonStartDate}</td>
       <td className="px-4 py-3 flex justify-center items-center  gap-3 border">
-        {/* <button
-          // onClick={handleUpdate}
-          className="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-        >
-          <FaRegEdit className="inline mr-1" />
-          Update
-        </button> */}
         <Modal marathon={marathon} />
         <Button
           onClick={() => handleDelete(_id)}
