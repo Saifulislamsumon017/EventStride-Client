@@ -1,17 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Logo from '../../assets/marathon.png';
 import { Button } from '../ui/button';
-import { FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
 import AuthUser from '@/Hoocks/AuthUser';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import { toast } from 'sonner';
 import { Link, NavLink, useNavigate } from 'react-router';
+import { MdAddTask } from 'react-icons/md';
+import { MdAppRegistration } from 'react-icons/md';
+import { MdOutlineEventAvailable } from 'react-icons/md';
 
 const Header = () => {
   const { user, signOutUser } = AuthUser();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem('theme') === 'dark';
+  });
+
+  // Sync theme on mount
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(prev => !prev);
+  };
 
   const handleSignOut = () => {
     signOutUser()
@@ -27,6 +49,7 @@ const Header = () => {
 
   return (
     <header className="py-3 w-full dark:bg-gray-800 dark:border-b-gray-600 border-b-gray-300 border-2 bg-white z-50">
+      <title>Header | Event Stried</title>
       <div className="w-11/12 mx-auto flex justify-between items-center px-4 md:px-0">
         {/* Logo section */}
         <Link to="/" className="flex gap-2 items-center">
@@ -60,8 +83,8 @@ const Header = () => {
 
         {/* Theme + User/Auth */}
         <div className="flex items-center gap-3">
-          <Button>
-            <FaMoon />
+          <Button onClick={toggleTheme}>
+            {isDark ? <FaSun /> : <FaMoon />}
           </Button>
 
           {user ? (
@@ -111,18 +134,63 @@ const Header = () => {
             <NavLink to="/marathons" onClick={() => setIsMenuOpen(false)}>
               Marathons
             </NavLink>
-            <NavLink to="/dashboard" onClick={() => setIsMenuOpen(false)}>
-              Dashboard
-            </NavLink>
-            {/* {user ? ( */}
-            <Button
-              onClick={() => {
-                handleSignOut();
-                setIsMenuOpen(false);
-              }}
-            >
-              LogOut
-            </Button>
+
+            {/* Dashboard + Submenu (only if logged in) */}
+            {user && (
+              <div className="flex flex-col gap-1">
+                <NavLink to="/dashboard" onClick={() => setIsMenuOpen(false)}>
+                  Dashboard
+                </NavLink>
+                <div className="ml-4 flex flex-col gap-1 text-base text-gray-700 dark:text-gray-300">
+                  <NavLink
+                    to={'dashboard/addmarathon'}
+                    className="hover:text-[#c0122d] flex items-center"
+                  >
+                    <MdAddTask />
+                    Add Marathon
+                  </NavLink>
+                  <NavLink
+                    to={'dashboard/my-marathon'}
+                    className="hover:text-[#c0122d] flex items-center"
+                  >
+                    <MdOutlineEventAvailable />
+                    My Marathons
+                  </NavLink>
+                  <NavLink
+                    to={'dashboard/myRegistration'}
+                    className="hover:text-[#c0122d] flex items-center"
+                  >
+                    <MdAppRegistration />
+                    My Registration
+                  </NavLink>
+                </div>
+              </div>
+            )}
+
+            {/* Logout Button if user logged in */}
+            {user && (
+              <Button
+                className="mt-3"
+                onClick={() => {
+                  handleSignOut();
+                  setIsMenuOpen(false);
+                }}
+              >
+                LogOut
+              </Button>
+            )}
+
+            {/* Show login/signup if not logged in */}
+            {!user && (
+              <div className="flex flex-col gap-2 mt-2">
+                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full">LogIn</Button>
+                </Link>
+                <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="w-full">SignUp</Button>
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
       )}

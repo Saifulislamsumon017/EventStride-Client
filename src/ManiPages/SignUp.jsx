@@ -1,15 +1,14 @@
 import Lottie from 'lottie-react';
 import React, { useState } from 'react';
-import signUp from '../assets/Lottie Files/SignUp Lottie.json';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation, useNavigate } from 'react-router';
-
+import signUp from '../assets/Lottie Files/SignUp Lottie.json';
+import SocialLogin from '@/components/AllComponents/SocialLogin';
 import AuthUser from '@/Hoocks/AuthUser';
 import { toast } from 'sonner';
-import SocialLogin from '@/components/AllComponents/SocialLogin';
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,11 +20,11 @@ const SignUp = () => {
   const handleSignUp = e => {
     e.preventDefault();
     const form = e.target;
-    const firstName = form.FirstName.value;
-    const lastName = form.LastName.value;
-    const email = form.email.value;
+    const firstName = form.FirstName.value.trim();
+    const lastName = form.LastName.value.trim();
+    const email = form.email.value.trim();
     const password = form.password.value;
-    const photoURL = form.photoURL.value;
+    const photoURL = form.photoURL.value.trim();
 
     if (!email || !password) {
       toast.error('Email and password are required');
@@ -54,13 +53,12 @@ const SignUp = () => {
 
     createUser(email, password)
       .then(result => {
-        console.log(result.user);
-
+        console.log(result);
         updateUserProfile({
           displayName: `${firstName} ${lastName}`,
-          photoURL: photoURL,
+          photoURL,
         }).then(() => {
-          toast.success('Account created successfully!👋');
+          toast.success('Account created successfully! 👋');
           navigate(from || '/');
           form.reset();
         });
@@ -70,97 +68,110 @@ const SignUp = () => {
         toast.error(error.message || 'Sign up failed');
       });
   };
+
   return (
-    <div className=" max-w-11/12 mx-auto flex h-screen gap-5 justify-center items-center">
-      <div>
+    <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row h-full items-center justify-center px-4 py-10 md:py-20 gap-10">
+      <div className="w-full md:w-1/2 flex justify-center items-center">
         <Lottie
-          className="w-[600px] h-full"
+          className="max-w-[500px] w-full h-auto"
           animationData={signUp}
-          loop={true}
+          loop
         />
       </div>
-      <div className="flex justify-center items-center  px-4 md:px-0 ">
-        <Card className="w-full mx-auto shadow rounded-2xl dark:bg-gray-800 dark:border-gray-600">
+
+      <div className="w-full md:w-1/3">
+        <Card className="w-full shadow-md rounded-2xl dark:bg-gray-800 dark:border-gray-600">
           <CardHeader>
             <CardTitle>
-              <h1 className="text-center text-2xl">Create An Account</h1>
-              <p className="text-center font-light font-rancho mt-2 dark:text-gray-300 ">
-                Enter Your Details Below To Create Your Account
+              <h1 className="text-center text-2xl font-bold">
+                Create An Account
+              </h1>
+              <p className="text-center font-light font-rancho mt-2 dark:text-gray-300">
+                Enter your details below to create your account
               </p>
             </CardTitle>
           </CardHeader>
+
           <CardContent>
             <form onSubmit={handleSignUp} className="space-y-4">
               <div className="flex gap-3">
                 <div className="w-1/2">
-                  <Label className="block w-full mb-2 pl-2">First Name</Label>
+                  <Label className="block mb-1 pl-2">First Name</Label>
                   <input
-                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
                     type="text"
                     name="FirstName"
                     placeholder="First Name"
+                    className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
+                    required
                   />
                 </div>
                 <div className="w-1/2">
-                  <Label className="block w-full mb-2 pl-2">Last Name</Label>
+                  <Label className="block mb-1 pl-2">Last Name</Label>
                   <input
-                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
                     type="text"
                     name="LastName"
                     placeholder="Last Name"
+                    className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
+                    required
                   />
                 </div>
               </div>
+
               <div>
-                <Label className="block w-full mb-2 pl-2">Profile Photo</Label>
+                <Label className="block mb-1 pl-2">Profile Photo URL</Label>
                 <input
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
                   type="url"
                   name="photoURL"
                   placeholder="Profile Photo URL"
+                  className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
                   required
                 />
               </div>
+
               <div>
-                <Label className="block w-full mb-2 pl-2">E-mail</Label>
+                <Label className="block mb-1 pl-2">Email</Label>
                 <input
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
                   type="email"
                   name="email"
-                  placeholder="Safwan@example.com"
+                  placeholder="Enter your email"
+                  className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
+                  required
                 />
               </div>
+
               <div className="relative">
-                <Label className="block w-full mb-2 pl-2">Password</Label>
+                <Label className="block mb-1 pl-2">Password</Label>
                 <input
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
-                  placeholder="Create A Password"
+                  placeholder="Create a password"
+                  className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
+                  required
                 />
                 <button
-                  onClick={() => setShowPassword(!showPassword)}
                   type="button"
-                  className="absolute right-2 top-8 text-gray-500"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-7 text-gray-500"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              <Button
-                className="w-full cursor-pointer text-[18px]"
-                type="submit"
-              >
-                SignUp
+
+              <Button className="w-full text-[18px]" type="submit">
+                Sign Up
               </Button>
             </form>
+
             <SocialLogin from={from} />
 
-            <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
-              Already Have An Account?
-              <Link to="/login">
-                <span className="cursor-pointer underline text-indigo-700">
-                  LogIn
-                </span>
+            <p className="text-center font-light font-abel pt-2 dark:text-gray-300">
+              Already have an account?{' '}
+              <Link
+                to="/login"
+                className="underline text-indigo-700 font-semibold"
+              >
+                Log In
               </Link>
             </p>
           </CardContent>

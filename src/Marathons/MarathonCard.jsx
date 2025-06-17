@@ -47,32 +47,32 @@ const MarathonCard = ({ marathon, marathons, setMarathons }) => {
     });
   };
   return (
-    <div className="p-4 border rounded-lg shadow-sm text-sm w-full text-black transition">
+    <div className="block sm:block md:block lg:hidden xl:hidden p-4 border rounded-lg shadow-md w-full max-w-md mx-auto bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <img
         className="rounded-md max-h-40 w-full object-cover"
         src={image}
-        alt="Marathon"
+        alt={`${title} marathon image`}
       />
-      <h3 className="text-3xl font-Rancho ml-2 mt-2">{title}</h3>
-      <div className="ml-2">
-        <h3 className="text-xl mt-1">
-          Company Name : <span className="font-semibold">{companyName}</span>
+      <h3 className="text-2xl sm:text-3xl font-Rancho mt-4 ml-1">{title}</h3>
+      <div className="ml-1 mt-2 space-y-1">
+        <h3 className="text-lg sm:text-xl">
+          Company Name: <span className="font-semibold">{companyName}</span>
         </h3>
 
-        <h3 className="text-xl mt-1">
+        <h3 className="text-lg sm:text-xl">
           Location: <span className="font-semibold">{location}</span>
         </h3>
-        <h3 className="text-xl mt-1">
+        <h3 className="text-lg sm:text-xl">
           Start Date: <span className="font-semibold">{marathonStartDate}</span>
         </h3>
       </div>
-      <div className="flex justify-between py-4">
+      <div className="flex justify-between py-4 mt-4">
         <Modal marathon={marathon} />
         <Button
           onClick={() => handleDelete(_id)}
-          className="px-3 py-2 flex items-center bg-red-500 text-white text-sm rounded hover:bg-red-600"
+          className="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 rounded text-white text-sm transition-colors duration-200"
         >
-          <RiDeleteBin6Line className="inline" />
+          <RiDeleteBin6Line className="mr-1" />
           Delete
         </Button>
       </div>

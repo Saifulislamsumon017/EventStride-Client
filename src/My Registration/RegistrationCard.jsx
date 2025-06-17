@@ -14,7 +14,6 @@ const RegistrationCard = ({
     registration;
 
   const handleDelete = _id => {
-    console.log(_id);
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -24,7 +23,6 @@ const RegistrationCard = ({
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
-      console.log(result.isConfirmed);
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/registration/${_id}`, {
           method: 'DELETE',
@@ -35,48 +33,47 @@ const RegistrationCard = ({
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount) {
-              Swal.fire({
-                title: 'Deleted!',
-                text: 'Your file has been deleted.',
-                icon: 'success',
-              });
-
-              //Remove Data from UI
-              const remainingRegistrations = registrations.filter(
-                registration => registration._id !== _id
+              Swal.fire(
+                'Deleted!',
+                'Your registration has been removed.',
+                'success'
               );
-              setRegistrations(remainingRegistrations);
+              const remaining = registrations.filter(reg => reg._id !== _id);
+              setRegistrations(remaining);
             }
           });
       }
     });
   };
+
   return (
-    <div className="p-4 border rounded-lg shadow-sm text-sm w-full text-black transition">
+    <div className="w-full p-4 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition">
       <img
-        className="rounded-md max-h-40 w-full object-cover"
+        className="w-full h-40 object-cover rounded-md mb-4"
         src={image}
-        alt="Marathon"
+        alt={marathonTitle}
       />
-      <h3 className="text-3xl font-Rancho ml-2 mt-2">{marathonTitle}</h3>
-      <div className="ml-2">
-        <h3 className="text-xl mt-1">
-          Applicant: <span className="font-semibold">{firstName}</span>
-        </h3>
-        <h3 className="text-xl mt-1">
-          Location: <span className="font-semibold">{location}</span>
-        </h3>
-        <h3 className="text-xl mt-1">
-          Start Date: <span className="font-semibold">{marathonStartDate}</span>
-        </h3>
+      <h2 className="text-2xl font-Rancho text-green-700 dark:text-green-400 mb-2">
+        {marathonTitle}
+      </h2>
+      <div className="space-y-1 text-sm sm:text-base">
+        <p>
+          <span className="font-semibold">Applicant:</span> {firstName}
+        </p>
+        <p>
+          <span className="font-semibold">Location:</span> {location}
+        </p>
+        <p>
+          <span className="font-semibold">Start Date:</span> {marathonStartDate}
+        </p>
       </div>
-      <div className="flex justify-between py-4">
+      <div className="flex justify-between items-center gap-4 mt-4">
         <RegistrationModal registration={registration} />
         <Button
           onClick={() => handleDelete(_id)}
-          className="px-3 py-2 flex items-center bg-red-500 text-white text-sm rounded hover:bg-red-600"
+          className="bg-red-600 hover:bg-red-700 text-white text-sm flex items-center gap-2 px-4 py-2 rounded"
         >
-          <RiDeleteBin6Line className="inline mr-1" />
+          <RiDeleteBin6Line />
           Delete
         </Button>
       </div>

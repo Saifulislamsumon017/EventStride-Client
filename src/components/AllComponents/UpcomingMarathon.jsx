@@ -13,7 +13,7 @@ const UpcomingMarathon = () => {
   return (
     <div className="py-20">
       <h1 className="text-center text-4xl">Upcoming Registered Events</h1>
-      <p className="text-center pt-3 pb-5">
+      <p className=" w-2/5 mx-auto text-center pb-6">
         Browse scheduled marathons and plan your participation in advance.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

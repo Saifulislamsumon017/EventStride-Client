@@ -13,7 +13,6 @@ const AllMarathons = () => {
   const sort = urlParams.get('sort') || 'desc';
   const limit = urlParams.get('limit') || '9';
 
-  // Defensive check to ensure data is an array
   const marathons = Array.isArray(marathonsData)
     ? marathonsData
     : marathonsData?.marathons || [];
@@ -29,16 +28,16 @@ const AllMarathons = () => {
   };
 
   return (
-    <div className="w-11/12 mx-auto py-20">
+    <div className="w-11/12 max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
       <Helmet>
         <title>All Marathons | EventStride</title>
       </Helmet>
 
       <h1 className="text-4xl mb-6 text-center">All Marathons</h1>
 
-      <div className="flex justify-end mb-4 gap-4">
+      <div className="flex flex-col sm:flex-row justify-end mb-4 gap-4">
         <select
-          className="border px-4 py-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
           value={sort}
           onChange={handleSortChange}
         >
@@ -47,7 +46,7 @@ const AllMarathons = () => {
         </select>
 
         <select
-          className="border px-4 py-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
           value={limit}
           onChange={handleLimitChange}
         >

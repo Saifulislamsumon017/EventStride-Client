@@ -39,6 +39,7 @@ const MarathonDetails = () => {
   useEffect(() => {
     if (!user?.email) return;
 
+    // Check if user already registered for this marathon
     fetch(`http://localhost:3000/registration?email=${user.email}`)
       .then(res => res.json())
       .then(data => {
@@ -46,6 +47,7 @@ const MarathonDetails = () => {
         setHasRegistered(alreadyRegistered);
       });
 
+    // Fetch total registration count for this marathon
     fetch(`http://localhost:3000/registrations/count?marathonId=${_id}`)
       .then(res => res.json())
       .then(data => setRegistrationCount(data?.count || 0));
@@ -73,6 +75,7 @@ const MarathonDetails = () => {
           <span className="font-semibold">Distance:</span> {distance}
         </p>
         <p>{description}</p>
+
         <p className="text-lg font-medium text-green-700">
           Total Registered: {registrationCount}
         </p>

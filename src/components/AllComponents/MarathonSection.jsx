@@ -25,10 +25,8 @@ const MarathonSection = () => {
 
   return (
     <div className="pt-20">
-      <h2 className="text-4xl text-center font-bold mb-4">
-        Chase Your Next Finish Line
-      </h2>
-      <p className="text-center mb-4">
+      <h2 className="text-4xl text-center mb-4">Chase Your Next Finish Line</h2>
+      <p className=" w-2/5 mx-auto text-center pb-6">
         Fuel your passion for running. Sign up for marathons happening near you
         and take the next stride toward greatness.
       </p>

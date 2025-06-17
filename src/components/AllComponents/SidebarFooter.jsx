@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Logo from '../../assets/marathon.png';
+import { Link } from 'react-router';
 import {
   FaFacebookF,
   FaTwitter,
@@ -8,12 +7,12 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from 'react-icons/fa';
-import { Link } from 'react-router';
+import Logo from '../../assets/marathon.png';
 
-const Footer = () => {
+const SidebarFooter = () => {
   return (
-    <footer className="bg-gradient-to-t from-gray-100 via-white to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-300 dark:border-gray-700">
-      <div className="w-11/12 mx-auto py-12 grid gap-10 grid-cols-1 md:grid-cols-4 text-sm text-gray-700 dark:text-gray-300">
+    <footer className="hidden sm:hidden mt-20 md:block ml-[300px] bg-gradient-to-t from-gray-100 via-white to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-t border-gray-300 dark:border-gray-700">
+      <div className="w-11/12 mx-auto py-10 grid gap-10 grid-cols-1 lg:grid-cols-4 text-sm text-gray-700 dark:text-gray-300">
         {/* Brand Info */}
         <div>
           <Link to="/" className="flex items-center gap-2 mb-4">
@@ -45,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Explore Links */}
+        {/* Explore */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
             Explore
@@ -74,7 +73,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Support Links */}
+        {/* Support */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
             Support
@@ -98,7 +97,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Legal Links */}
+        {/* Legal */}
         <div>
           <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
             Legal
@@ -123,7 +122,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Line */}
       <div className="border-t border-gray-300 dark:border-gray-700 py-4 text-center text-xs text-gray-600 dark:text-gray-400">
         &copy; {new Date().getFullYear()} EventStride. All rights reserved.
       </div>
@@ -131,4 +129,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default SidebarFooter;

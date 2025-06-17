@@ -17,11 +17,13 @@ import MyRegistrations from '@/My Registration/MyRegistrations';
 import AddMarathon from '@/Marathons/AddMarathon';
 import MyMarathonList from '@/Marathons/MyMarathonList';
 import MyAllMarathons from '@/Marathons/MyAllMarathons';
+import ErrorPage from '@/ManiPages/ErrorPage';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     Component: MainLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -30,7 +32,12 @@ export const router = createBrowserRouter([
 
       {
         path: '/marathons',
-        Component: AllMarathons,
+        element: (
+          <PrivateRoutes>
+            <AllMarathons />
+          </PrivateRoutes>
+        ),
+
         loader: marathonsLoader,
       },
 
@@ -62,6 +69,7 @@ export const router = createBrowserRouter([
   {
     path: 'dashboard',
     Component: Dashboard,
+
     children: [
       {
         index: true,

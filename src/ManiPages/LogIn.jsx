@@ -5,7 +5,6 @@ import { Label } from '@/components/ui/label';
 import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation, useNavigate } from 'react-router';
-
 import Login from '../assets/Lottie Files/LogIn Lottie.json';
 import SocialLogin from '@/components/AllComponents/SocialLogin';
 import AuthUser from '@/Hoocks/AuthUser';
@@ -18,92 +17,93 @@ const LogIn = () => {
   const navigate = useNavigate();
   const from = location.state || '/';
 
-  const handelSignIn = e => {
+  const handleSignIn = e => {
     e.preventDefault();
     const form = e.target;
-
     const email = form.email.value;
     const password = form.password.value;
 
     signInUser(email, password)
       .then(result => {
         const user = result.user;
-        console.log(user);
-
         const displayName =
           user.displayName || user.email?.split('@')[0] || 'User';
         const firstName = displayName.split(' ')[0];
         navigate(from || '/');
         toast.success(`Welcome back, ${firstName}!`);
-
-        // form.reset();
       })
       .catch(error => {
         console.error(error);
         toast.error('Failed to sign in. Please check your credentials.');
       });
   };
+
   return (
-    <div className=" max-w-11/12 mx-auto flex h-screen gap-5  justify-center items-center">
-      <div>
+    <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row h-full items-center justify-center px-4 py-10 md:py-20 gap-10">
+      <div className="w-full md:w-1/2 flex justify-center items-center">
         <Lottie
-          className="w-[600px] h-full"
+          className="max-w-[500px] w-full h-auto"
           animationData={Login}
-          loop={true}
+          loop
         />
       </div>
-      <div className=" w-1/4 flex justify-center items-center  px-4 md:px-0 ">
-        <Card className="w-full mx-auto shadow rounded-2xl dark:bg-gray-800 dark:border-gray-600">
+
+      <div className="w-full md:w-1/3">
+        <Card className="w-full shadow-md rounded-2xl dark:bg-gray-800 dark:border-gray-600">
           <CardHeader>
             <CardTitle>
-              <h1 className="text-center text-2xl">LogIn Into Your Account</h1>
-              <p className="text-center font-light font-rancho mt-2 dark:text-gray-300 ">
-                Enter Your Details Below To LogIn Your Account
+              <h1 className="text-center text-2xl font-bold">Log In</h1>
+              <p className="text-center font-light font-rancho mt-2 dark:text-gray-300">
+                Enter your details below to log in to your account
               </p>
             </CardTitle>
           </CardHeader>
+
           <CardContent>
-            <form onSubmit={handelSignIn} className="space-y-4">
+            <form onSubmit={handleSignIn} className="space-y-4">
               <div>
-                <Label className="block w-full mb-2 pl-2">E-mail</Label>
+                <Label className="block mb-1 pl-2">Email</Label>
                 <input
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
                   type="email"
                   name="email"
-                  placeholder="Enter Your E-mail Address"
+                  required
+                  placeholder="Enter your email"
                 />
               </div>
+
               <div className="relative">
-                <Label className="block w-full mb-2 pl-2">Password</Label>
+                <Label className="block mb-1 pl-2">Password</Label>
                 <input
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  className="w-full font-abel border pl-3 py-2 rounded dark:border-gray-600 dark:bg-gray-900"
                   type={showPassword ? 'text' : 'password'}
                   name="password"
-                  placeholder="Enter Your Password"
+                  required
+                  placeholder="Enter your password"
                 />
                 <button
-                  onClick={() => setShowPassword(!showPassword)}
                   type="button"
-                  className="absolute right-2 top-8 text-gray-500"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-7 text-gray-500"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
-              <Button
-                className="w-full cursor-pointer text-[18px]"
-                type="submit"
-              >
-                LogIn
+
+              <Button className="w-full text-[18px]" type="submit">
+                Log In
               </Button>
             </form>
+
             <SocialLogin from={from} />
 
-            <p className="text-center font-light font-abel pt-2 dark:text-gray-300 ">
-              Don't Have An Account?
-              <Link to="/signup">
-                <span className="cursor-pointer underline text-indigo-700">
-                  SignUp
-                </span>
+            <p className="text-center font-light font-abel pt-2 dark:text-gray-300">
+              Don't have an account?{' '}
+              <Link
+                to="/signup"
+                className="underline text-indigo-700 font-semibold"
+              >
+                Sign Up
               </Link>
             </p>
           </CardContent>

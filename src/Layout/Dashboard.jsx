@@ -1,9 +1,11 @@
+import DashbordFotter from '@/components/AllComponents/SidebarFooter';
 import Footer from '@/components/AllComponents/Footer';
 import Header from '@/components/AllComponents/Header';
 import Sidebar from '@/components/AllComponents/Sidebar';
 import React from 'react';
 import { Outlet } from 'react-router';
 import { Toaster } from 'sonner';
+import SidebarFooter from '@/components/AllComponents/SidebarFooter';
 
 const Dashboard = () => {
   return (
@@ -19,7 +21,7 @@ const Dashboard = () => {
         <Toaster position="top-right" duration={4000} />
       </main>
       <footer className="z-50">
-        <Footer />
+        <SidebarFooter />
       </footer>
     </>
   );

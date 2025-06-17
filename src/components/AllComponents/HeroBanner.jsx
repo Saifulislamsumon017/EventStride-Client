@@ -1,8 +1,10 @@
 import React from 'react';
 import SlideImg1 from '../../assets/Lottie Files/Run the World.webp';
-import SlideImg2 from '../../assets/Lottie Files/2.webp';
+import SlideImg2 from '../../assets/Lottie Files/Sunset wep.webp';
+
 import SlideImg3 from '../../assets/Lottie Files/marathon events.webp';
-import SlideImg4 from '../../assets/Lottie Files/3.webp';
+import SlideImg4 from '../../assets/Lottie Files/EventApplication.webp';
+
 const HeroBanner = () => {
   return (
     <div className="carousel w-full">

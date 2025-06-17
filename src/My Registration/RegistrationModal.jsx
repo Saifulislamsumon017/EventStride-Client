@@ -17,7 +17,8 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const RegistrationModal = ({ registration, refetch }) => {
   const {
@@ -30,6 +31,7 @@ const RegistrationModal = ({ registration, refetch }) => {
     additionalInfo,
   } = registration;
   const { user } = AuthUser();
+  const navigate = useNavigate();
   const [marathonStart, setMarathonStart] = useState(
     new Date(marathonStartDate)
   );
@@ -59,16 +61,25 @@ const RegistrationModal = ({ registration, refetch }) => {
     })
       .then(res => res.json())
       .then(result => {
-        if (result.modifiedCount > 0) {
-          alert('Registration updated successfully!');
+        if (result.modifiedCount) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registration updated successfully!',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/dashboard');
           refetch && refetch();
-        } else {
-          alert('No changes were made.');
         }
       })
       .catch(error => {
-        console.error('Error updating marathon:', error);
-        alert('Something went wrong. Please try again.');
+        console.error('Error updating Registration:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong. Please try again!',
+        });
       });
   };
   return (

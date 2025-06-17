@@ -3,50 +3,70 @@ import MarathonRaw from './MarathonRaw';
 import MarathonCard from './MarathonCard';
 
 const MyMarathonList = ({ myMarathonsLoader }) => {
-  const initialmarathons = use(myMarathonsLoader);
-  const [marathons, setMarathons] = useState(initialmarathons);
+  const initialMarathons = use(myMarathonsLoader);
+  const [marathons, setMarathons] = useState(initialMarathons);
 
-  console.log(marathons);
   return (
-    <div className=" w-11/12 mx-auto py-20 overflow-x-auto">
-      <div className="hidden md:block ml-[320px]">
-        <h1 className="text-center text-4xl pb-6">My Listed All Marathon</h1>
-        <table className="min-w-full border border-gray-200">
-          <thead>
-            <tr className="bg-gray-100 text-left">
-              <th className="py-2 px-4 border">#Sl</th>
-              <th className="py-3 px-4 border">Image</th>
-              <th className="py-2 px-4 border">Company Name</th>
-              <th className="py-2 px-4 border">Marathon Title</th>
-              <th className="py-3 px-4 border">Location</th>
-              <th className="py-2 px-4 border">Start Date</th>
+    <div className="min-h-screen pt-8 px-4 md:px-6 lg:px-8 md:ml-[320px]">
+      <div className="max-w-[1200px] mx-auto w-full">
+        <h1 className="text-2xl md:text-4xl font-semibold text-center mb-10 text-gray-800 dark:text-white">
+          My Listed Marathons
+        </h1>
 
-              <th className="py-2 px-4 border text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {marathons.map((marathon, index) => (
-              <MarathonRaw
-                key={marathon._id}
-                marathon={marathon}
-                index={index}
-                marathons={marathons}
-                setMarathons={setMarathons}
-              ></MarathonRaw>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className="block md:hidden space-y-4 mt-5">
-        {marathons.map((marathon, index) => (
-          <MarathonCard
-            key={marathon._id}
-            marathon={marathon}
-            index={index}
-            marathons={marathons}
-            setMarathons={setMarathons}
-          />
-        ))}
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto rounded-xl">
+          <div className="w-full border border-gray-200 dark:border-gray-700 rounded-xl">
+            <table className="w-full text-left border-collapse table-auto min-w-[800px]">
+              <thead className="bg-gray-100 dark:bg-gray-800 dark:text-gray-200">
+                <tr>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">#</th>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">
+                    Image
+                  </th>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">
+                    Company Name
+                  </th>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">
+                    Marathon Title
+                  </th>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">
+                    Location
+                  </th>
+                  <th className="py-3 px-4 border-b dark:border-gray-600">
+                    Start Date
+                  </th>
+                  <th className="py-3 px-4 border-b text-center dark:border-gray-600">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-gray-900 dark:text-gray-100">
+                {marathons.map((marathon, index) => (
+                  <MarathonRaw
+                    key={marathon._id}
+                    marathon={marathon}
+                    index={index}
+                    marathons={marathons}
+                    setMarathons={setMarathons}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Mobile Card View */}
+        <div className="md:hidden space-y-6 mt-6">
+          {marathons.map((marathon, index) => (
+            <MarathonCard
+              key={marathon._id}
+              marathon={marathon}
+              index={index}
+              marathons={marathons}
+              setMarathons={setMarathons}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -13,10 +13,8 @@ const MarathonRegister = () => {
   const { id: marathonId } = useParams();
   const { user } = AuthUser();
   const navigate = useNavigate();
-
   const [marathon, setMarathon] = useState(null);
 
-  // Fetch marathon details by ID
   useEffect(() => {
     axios
       .get(`http://localhost:3000/marathons/${marathonId}`)
@@ -33,8 +31,8 @@ const MarathonRegister = () => {
       applicantEmail: user.email,
       marathonTitle: marathon?.title,
       marathonStartDate: marathon?.marathonStartDate,
-      image: marathon?.image, // ✅ Include image URL
-      location: marathon?.location, // ✅ Include location
+      image: marathon?.image,
+      location: marathon?.location,
       firstName: form.firstName.value,
       lastName: form.lastName.value,
       contact: form.contact.value,
@@ -74,135 +72,132 @@ const MarathonRegister = () => {
   };
 
   return (
-    <div className="max-w-11/12 mx-auto flex py-20 gap-5 justify-center items-center">
-      <div>
-        <Lottie
-          className="w-[600px] h-full"
-          animationData={marathonRegiste}
-          loop={true}
-        />
-      </div>
-      <div className="w-1/3 flex justify-center items-center px-4 md:px-0">
-        <Card className="w-full mx-auto shadow rounded-2xl dark:bg-gray-800 dark:border-gray-600">
-          <CardHeader>
-            <CardTitle>
-              <h1 className="text-center text-2xl">Register for Marathon</h1>
+    <div className="w-full max-w-screen-xl px-4 mx-auto py-10">
+      <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
+        {/* Form */}
+        <div className="w-full lg:w-1/2">
+          <Card className="w-full mx-auto shadow-lg rounded-2xl dark:bg-gray-800 dark:border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-center text-2xl">
+                Register for Marathon
+              </CardTitle>
               <p className="text-center font-light font-rancho mt-2 dark:text-gray-300">
                 Fill out your details to register
               </p>
-            </CardTitle>
-          </CardHeader>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="w-full">
+                    <Label className="mb-1 pl-2">First Name</Label>
+                    <input
+                      name="firstName"
+                      required
+                      placeholder="First Name"
+                      className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                      type="text"
+                    />
+                  </div>
+                  <div className="w-full">
+                    <Label className="mb-1 pl-2">Last Name</Label>
+                    <input
+                      name="lastName"
+                      required
+                      placeholder="Last Name"
+                      className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                      type="text"
+                    />
+                  </div>
+                </div>
 
-          <CardContent>
-            <form onSubmit={handleRegister} className="space-y-4">
-              <div className="flex gap-3">
-                <div className="w-1/2">
-                  <Label className="block w-full mb-2 pl-2">First Name</Label>
+                <div>
+                  <Label className="mb-1 pl-2">Contact Number</Label>
                   <input
-                    name="firstName"
+                    name="contact"
                     required
-                    placeholder="First Name"
+                    placeholder="Enter contact number"
                     className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                    type="text"
+                    type="tel"
                   />
                 </div>
-                <div className="w-1/2">
-                  <Label className="block w-full mb-2 pl-2">Last Name</Label>
+
+                <div>
+                  <Label className="mb-1 pl-2">Email (Read Only)</Label>
                   <input
-                    name="lastName"
-                    required
-                    placeholder="Last Name"
+                    name="email"
+                    value={user.email}
+                    readOnly
                     className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                    type="text"
+                    type="email"
                   />
                 </div>
-              </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">Contact Number</Label>
-                <input
-                  name="contact"
-                  required
-                  placeholder="Enter contact number"
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                  type="tel"
-                />
-              </div>
+                <div>
+                  <Label className="mb-1 pl-2">Marathon Title</Label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={marathon?.title || ''}
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  />
+                </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">
-                  Email (Read Only)
-                </Label>
-                <input
-                  name="email"
-                  value={user.email}
-                  readOnly
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                  type="email"
-                />
-              </div>
+                <div>
+                  <Label className="mb-1 pl-2">Start Date</Label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={marathon?.marathonStartDate || ''}
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  />
+                </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">Marathon Title</Label>
-                <input
-                  type="text"
-                  readOnly
-                  value={marathon?.title || ''}
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                />
-              </div>
+                <div>
+                  <Label className="mb-1 pl-2">Location</Label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={marathon?.location || ''}
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  />
+                </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">Start Date</Label>
-                <input
-                  type="text"
-                  readOnly
-                  value={marathon?.marathonStartDate || ''}
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                />
-              </div>
+                <div>
+                  <Label className="mb-1 pl-2">Image URL</Label>
+                  <input
+                    type="text"
+                    readOnly
+                    value={marathon?.image || ''}
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  />
+                </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">Location</Label>
-                <input
-                  type="text"
-                  readOnly
-                  value={marathon?.location || ''}
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                />
-              </div>
+                <div>
+                  <Label className="mb-1 pl-2">Additional Info</Label>
+                  <textarea
+                    name="additionalInfo"
+                    rows="3"
+                    placeholder="Write something..."
+                    className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
+                  />
+                </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">Image URL</Label>
-                <input
-                  type="text"
-                  readOnly
-                  value={marathon?.image || ''}
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                />
-              </div>
+                <Button className="w-full text-[18px]" type="submit">
+                  Submit Registration
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
 
-              <div>
-                <Label className="block w-full mb-2 pl-2">
-                  Additional Info
-                </Label>
-                <textarea
-                  name="additionalInfo"
-                  rows="3"
-                  placeholder="Write something..."
-                  className="dark:border-gray-600 dark:bg-gray-900 w-full font-abel border pl-2 py-2 rounded"
-                />
-              </div>
-
-              <Button
-                className="w-full cursor-pointer text-[18px]"
-                type="submit"
-              >
-                Submit Registration
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+        {/* Animation */}
+        <div className="w-full lg:w-1/2">
+          <Lottie
+            className="w-full max-w-md mx-auto h-auto"
+            animationData={marathonRegiste}
+            loop
+          />
+        </div>
       </div>
     </div>
   );

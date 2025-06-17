@@ -1,5 +1,4 @@
 import { FaLocationDot } from 'react-icons/fa6';
-
 import { FcCalendar } from 'react-icons/fc';
 import { Link } from 'react-router';
 
@@ -13,7 +12,6 @@ const SingleCard = ({ marathon }) => {
     registrationEndDate,
   } = marathon;
 
-  // Format function: "day:month:year"
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -23,31 +21,33 @@ const SingleCard = ({ marathon }) => {
   }
 
   return (
-    <div className="border rounded-xl p-4 shadow hover:shadow-md transition">
+    <div className="border rounded-xl p-4 shadow hover:shadow-md transition duration-300 ease-in-out">
       <img
         src={image}
-        alt={title}
+        alt={title || 'Marathon Image'}
         className="h-48 w-full object-cover rounded"
       />
-      <h2 className="text-xl font-semibold mt-3">{title}</h2>
+      <h2 className="text-xl font-semibold mt-4">{title}</h2>
 
-      <div className="flex items-center space-x-1 my-2">
+      <div className="flex items-center space-x-2 my-3 text-gray-700">
         <FaLocationDot size={20} />
-        <p className="text-gray-600">{location}</p>
+        <p>{location}</p>
       </div>
 
-      <div className="flex items-center space-x-1">
+      <div className="flex items-center space-x-2 text-gray-500 text-sm">
         <FcCalendar size={20} />
-        <p className="text-sm text-gray-500">
+        <p>
           {formatDate(registrationStartDate)} -{' '}
           {formatDate(registrationEndDate)}
         </p>
       </div>
 
-      <Link to={`/marathons/${_id}`}>
-        <button className="mt-3 bg-[#c0122d] text-white px-4 py-2 rounded hover:bg-[#c0122cda]">
-          See Details
-        </button>
+      <Link
+        to={`/marathons/${_id}`}
+        className="inline-block mt-4 bg-[#c0122d] text-white px-5 py-2 rounded hover:bg-[#c0122cda] transition"
+        aria-label={`See details for ${title}`}
+      >
+        See Details
       </Link>
     </div>
   );
