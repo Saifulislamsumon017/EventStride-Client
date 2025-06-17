@@ -52,7 +52,7 @@ const RegistrationModal = ({ registration, refetch }) => {
     };
     console.log(updatedMarathon);
 
-    fetch(`http://localhost:3000/registration/${_id}`, {
+    fetch(`https://event-stride-server.vercel.app/registration/${_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

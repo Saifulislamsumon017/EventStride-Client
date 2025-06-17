@@ -40,7 +40,9 @@ const MarathonDetails = () => {
     if (!user?.email) return;
 
     // Check if user already registered for this marathon
-    fetch(`http://localhost:3000/registration?email=${user.email}`)
+    fetch(
+      `https://event-stride-server.vercel.app/registration?email=${user.email}`
+    )
       .then(res => res.json())
       .then(data => {
         const alreadyRegistered = data.some(r => r.marathonId === _id);
@@ -48,7 +50,9 @@ const MarathonDetails = () => {
       });
 
     // Fetch total registration count for this marathon
-    fetch(`http://localhost:3000/registrations/count?marathonId=${_id}`)
+    fetch(
+      `https://event-stride-server.vercel.app/registrations/count?marathonId=${_id}`
+    )
       .then(res => res.json())
       .then(data => setRegistrationCount(data?.count || 0));
   }, [_id, user?.email]);

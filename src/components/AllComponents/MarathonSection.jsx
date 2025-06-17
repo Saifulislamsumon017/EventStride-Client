@@ -9,7 +9,7 @@ const MarathonSection = () => {
 
   useEffect(() => {
     // API fetch
-    fetch('http://localhost:3000/marathons?sort=desc&limit=6')
+    fetch('https://event-stride-server.vercel.app/marathons?sort=desc&limit=6')
       .then(res => res.json())
       .then(data => {
         setMarathons(data);

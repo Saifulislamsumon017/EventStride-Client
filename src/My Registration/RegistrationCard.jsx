@@ -24,7 +24,7 @@ const RegistrationCard = ({
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/registration/${_id}`, {
+        fetch(`https://event-stride-server.vercel.app/registration/${_id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

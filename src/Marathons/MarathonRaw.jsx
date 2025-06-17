@@ -22,7 +22,7 @@ const MarathonRaw = ({ marathon, index, marathons, setMarathons }) => {
     }).then(result => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/marathons/${_id}`, {
+        fetch(`https://event-stride-server.vercel.app/marathons/${_id}`, {
           method: 'DELETE',
           headers: {
             'content-type': 'Application/json',

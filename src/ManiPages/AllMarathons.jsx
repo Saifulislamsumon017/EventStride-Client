@@ -1,6 +1,5 @@
 import SingleCard from '@/Marathons/SingleCard';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 import { useLoaderData, useLocation, useNavigate } from 'react-router';
 
@@ -29,9 +28,7 @@ const AllMarathons = () => {
 
   return (
     <div className="w-11/12 max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
-      <Helmet>
-        <title>All Marathons | EventStride</title>
-      </Helmet>
+      <title>All Marathons | EventStride</title>
 
       <h1 className="text-4xl mb-6 text-center">All Marathons</h1>
 

@@ -63,7 +63,7 @@ const Modal = ({ marathon, refetch }) => {
 
     console.log(updatedMarathon);
 
-    fetch(`http://localhost:3000/marathons/${_id}`, {
+    fetch(`https://event-stride-server.vercel.app/marathons/${_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

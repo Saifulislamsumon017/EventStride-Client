@@ -45,7 +45,9 @@ export const router = createBrowserRouter([
         path: '/marathons/:id',
         Component: MarathonDetails,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/marathons/${params.id}`),
+          fetch(
+            `https://event-stride-server.vercel.app/marathons/${params.id}`
+          ),
       },
       {
         path: '/marathonRegister/:id',
