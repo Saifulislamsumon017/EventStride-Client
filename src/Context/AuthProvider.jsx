@@ -10,7 +10,6 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '../../firebase.config';
-import axios from 'axios';
 
 const GoogleProvider = new GoogleAuthProvider();
 
@@ -46,20 +45,6 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
       setLoading(false);
-
-      if (currentUser?.email) {
-        // const userData = { email: currentUser.email };
-        axios
-          .post('https://event-stride-server.vercel.app/jwt', {
-            withCredentials: true,
-          })
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
     });
     return () => {
       unSubscribe();

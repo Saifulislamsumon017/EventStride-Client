@@ -51,7 +51,7 @@ const AddMarathon = () => {
     try {
       const res = await axios.post(
         'https://event-stride-server.vercel.app/marathons',
-        { withCredentials: true },
+
         addMarathon
       );
       if (res.data.insertedId || res.data.acknowledged) {

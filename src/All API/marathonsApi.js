@@ -4,7 +4,6 @@ export const marathonsLoader = ({ request }) => {
   const limit = url.searchParams.get('limit') || '9';
 
   return fetch(
-    `https://event-stride-server.vercel.app/marathons?sort=${sort}&limit=${limit}`,
-    { credentials: 'include' }
+    `https://event-stride-server.vercel.app/marathons?sort=${sort}&limit=${limit}`
   ).then(res => res.json());
 };

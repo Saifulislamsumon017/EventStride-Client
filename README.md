@@ -49,7 +49,7 @@ smooth, responsive UI powered by React and Tailwind.
 
 ## 🌐 Live Demo
 
-[🚀 Click here to view the live demo](https://your-live-demo-url.com)
+[🚀 Click here to view the live demo](https://eventstride-auth.web.app/)
 
 ---
 

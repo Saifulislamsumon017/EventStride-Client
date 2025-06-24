@@ -17,9 +17,7 @@ const MarathonRegister = () => {
 
   useEffect(() => {
     axios
-      .get(`https://event-stride-server.vercel.app/marathons/${marathonId}`, {
-        withCredentials: true,
-      })
+      .get(`https://event-stride-server.vercel.app/marathons/${marathonId}`)
       .then(res => setMarathon(res.data))
       .catch(err => console.error('Failed to fetch marathon:', err));
   }, [marathonId]);
@@ -44,7 +42,6 @@ const MarathonRegister = () => {
     axios
       .post(
         'https://event-stride-server.vercel.app/registration',
-        { withCredentials: true },
         registrationData
       )
       .then(res => {
