@@ -6,7 +6,7 @@ import {
   FaQuestionCircle,
 } from 'react-icons/fa';
 
-const FeatureCard = ({ Icon, title, description, link }) => {
+const HelpCard = ({ Icon, title, description, link }) => {
   return (
     <a
       href={link}
@@ -84,7 +84,7 @@ const HelpCenter = () => {
       {/* Cards */}
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {helpSections.map((section, index) => (
-          <FeatureCard
+          <HelpCard
             key={index}
             Icon={section.Icon}
             title={section.title}
