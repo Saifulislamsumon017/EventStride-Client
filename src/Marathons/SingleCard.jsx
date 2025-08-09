@@ -29,12 +29,12 @@ const SingleCard = ({ marathon }) => {
       />
       <h2 className="text-xl font-semibold mt-4">{title}</h2>
 
-      <div className="flex items-center space-x-2 my-3 text-gray-700">
+      <div className="flex items-center space-x-2 my-3 ">
         <FaLocationDot size={20} />
         <p>{location}</p>
       </div>
 
-      <div className="flex items-center space-x-2 text-gray-500 text-sm">
+      <div className="flex items-center space-x-2 text-sm">
         <FcCalendar size={20} />
         <p>
           {formatDate(registrationStartDate)} -{' '}

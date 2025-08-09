@@ -62,12 +62,8 @@ const Header = () => {
     { to: '/', label: 'Home' },
     { to: '/marathons', label: 'Marathons' },
     { to: '/about', label: 'About' },
-    ...(user
-      ? [
-          { to: '/dashboard', label: 'Dashboard' },
-          { to: '/contact', label: 'Contact' },
-        ]
-      : []),
+    { to: '/contact', label: 'Contact' },
+    ...(user ? [{ to: '/dashboard', label: 'Dashboard' }] : []),
   ];
 
   return (
@@ -131,7 +127,7 @@ const Header = () => {
               className={`transition ${
                 isDark
                   ? 'bg-white text-black hover:bg-yellow-400'
-                  : 'bg-yellow-400 text-black hover:bg-yellow-300'
+                  : 'bg-white text-black hover:bg-[#c0122d] hover:text-white shadow'
               }`}
               aria-label="Toggle theme"
             >

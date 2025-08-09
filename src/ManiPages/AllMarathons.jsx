@@ -27,10 +27,10 @@ const AllMarathons = () => {
   };
 
   return (
-    <div className="w-11/12 max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+    <div className="w-11/12  mx-auto py-20 px-4 sm:px-6">
       <title>All Marathons | EventStride</title>
 
-      <h1 className="text-4xl mb-6 text-center">All Marathons</h1>
+      <h1 className="text-4xl my-6 text-center">All Marathons</h1>
 
       <div className="flex flex-col sm:flex-row justify-end mb-4 gap-4">
         <select

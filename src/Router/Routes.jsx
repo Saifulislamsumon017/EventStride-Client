@@ -18,6 +18,13 @@ import AddMarathon from '@/Marathons/AddMarathon';
 import MyMarathonList from '@/Marathons/MyMarathonList';
 import MyAllMarathons from '@/Marathons/MyAllMarathons';
 import ErrorPage from '@/ManiPages/ErrorPage';
+import Contact from '@/ManiPages/Contact/Contact';
+import About from '@/ManiPages/About/About';
+import FAQs from '@/ManiPages/OthersPage/FAQs';
+import HelpCenter from '@/ManiPages/OthersPage/HelpCenter';
+import TermsofService from '@/ManiPages/OthersPage/TermsofService';
+import PrivacyPolicy from '@/ManiPages/OthersPage/PrivacyPolicy';
+import CookiePolicy from '@/ManiPages/OthersPage/CookiePolicy';
 
 export const router = createBrowserRouter([
   {
@@ -32,11 +39,7 @@ export const router = createBrowserRouter([
 
       {
         path: '/marathons',
-        element: (
-          <PrivateRoutes>
-            <AllMarathons />
-          </PrivateRoutes>
-        ),
+        element: <AllMarathons />,
 
         loader: marathonsLoader,
       },
@@ -58,6 +61,34 @@ export const router = createBrowserRouter([
         ),
       },
 
+      {
+        path: '/contact',
+        Component: Contact,
+      },
+      {
+        path: '/about',
+        Component: About,
+      },
+      {
+        path: '/faq',
+        Component: FAQs,
+      },
+      {
+        path: '/help',
+        Component: HelpCenter,
+      },
+      {
+        path: '/terms',
+        Component: TermsofService,
+      },
+      {
+        path: '/privacy',
+        Component: PrivacyPolicy,
+      },
+      {
+        path: 'cookie',
+        Component: CookiePolicy,
+      },
       {
         path: '/login',
         Component: LogIn,

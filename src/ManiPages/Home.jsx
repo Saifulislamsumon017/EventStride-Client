@@ -9,7 +9,7 @@ import React, { Suspense } from 'react';
 
 const Home = () => {
   return (
-    <div className="w-11/12 mx-auto py-20">
+    <div className="w-11/12  mx-auto py-20 px-4 sm:px-6">
       <title>Home | EventStride</title>
 
       <HeroBanner />
