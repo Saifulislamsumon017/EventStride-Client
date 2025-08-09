@@ -7,7 +7,7 @@ const TermsOfService = () => {
       <title>Terms of Service | EventStride</title>
 
       {/* Heading */}
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-[#c0122d] to-orange-500 bg-clip-text text-transparent mb-6 text-center">
+      <h1 className="text-4xl my-6 font-bold bg-gradient-to-r from-[#c0122d] to-orange-500 bg-clip-text text-transparent mb-6 text-center">
         Terms of Service
       </h1>
 

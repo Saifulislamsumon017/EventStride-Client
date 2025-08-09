@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
       <title>Privacy Policy | EventStride</title>
 
       {/* Heading */}
-      <h1 className="text-4xl font-bold bg-gradient-to-r from-[#c0122d] to-orange-500 bg-clip-text text-transparent mb-6 text-center">
+      <h1 className="text-4xl my-6 font-bold bg-gradient-to-r from-[#c0122d] to-orange-500 bg-clip-text text-transparent mb-6 text-center">
         Privacy Policy
       </h1>
 
