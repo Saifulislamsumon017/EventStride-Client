@@ -237,7 +237,7 @@ const Contact = () => {
             to="/marathons"
             className="text-[#c0122d] hover:underline font-semibold dark:text-yellow-300"
           >
-            Explore marathons
+            Explore Marathons
           </Link>
           .
         </p>

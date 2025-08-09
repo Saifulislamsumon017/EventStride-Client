@@ -98,10 +98,7 @@ const Modal = ({ marathon, refetch }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          className=" bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
-          variant="outline"
-        >
+        <Button variant="outline">
           <FaRegEdit className="inline" />
           Update
         </Button>

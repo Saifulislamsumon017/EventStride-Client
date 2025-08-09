@@ -9,7 +9,7 @@ import { myMarathonsLoader } from '@/All API/myMarathons.Api';
 const MyAllMarathons = () => {
   const { user } = AuthUser();
   return (
-    <div>
+    <div className="py-20 px-4 sm:px-6">
       <title>Dashboard | My Marathons</title>
 
       <Suspense fallback={<Loading />}>

@@ -90,7 +90,7 @@ const AddMarathon = () => {
   };
 
   return (
-    <div className="min-h-screen pt-8 px-4 md:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center ml-0 md:ml-[320px]">
+    <div className="min-h-screen pt-30 px-4 md:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-center ml-0 md:ml-[320px]">
       <title>Dashboard | Add Marathon</title>
 
       {/* Lottie Animation */}

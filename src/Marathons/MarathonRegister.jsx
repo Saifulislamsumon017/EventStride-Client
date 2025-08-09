@@ -75,7 +75,7 @@ const MarathonRegister = () => {
   };
 
   return (
-    <div className="w-full max-w-screen-xl px-4 mx-auto py-10">
+    <div className="w-11/12  mx-auto pt-30 pb-20 px-4 sm:px-6">
       <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
         {/* Form */}
         <div className="w-full lg:w-1/2">

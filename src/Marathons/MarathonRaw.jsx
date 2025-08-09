@@ -63,7 +63,7 @@ const MarathonRaw = ({ marathon, index, marathons, setMarathons }) => {
         <Modal marathon={marathon} />
         <Button
           onClick={() => handleDelete(_id)}
-          className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+          className="px-3 py-1 bg-[#c0122d] text-white text-sm rounded hover:bg-[#c0122d]"
         >
           <RiDeleteBin6Line className="inline" />
           Delete
