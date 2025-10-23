@@ -62,8 +62,13 @@ const Header = () => {
     { to: '/', label: 'Home' },
     { to: '/marathons', label: 'Marathons' },
     { to: '/about', label: 'About' },
-    { to: '/contact', label: 'Contact' },
-    ...(user ? [{ to: '/dashboard', label: 'Dashboard' }] : []),
+
+    ...(user
+      ? [
+          { to: '/contact', label: 'Contact' },
+          { to: '/dashboard', label: 'Dashboard' },
+        ]
+      : []),
   ];
 
   return (

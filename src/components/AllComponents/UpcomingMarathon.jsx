@@ -16,7 +16,7 @@ const UpcomingMarathon = () => {
       <p className=" w-2/5 mx-auto text-center pb-6">
         Browse scheduled marathons and plan your participation in advance.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {marathons.map((marathon, index) => (
           <div
             key={index}

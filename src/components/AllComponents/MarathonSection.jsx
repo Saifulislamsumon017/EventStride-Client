@@ -9,7 +9,7 @@ const MarathonSection = () => {
 
   useEffect(() => {
     // API fetch
-    fetch('https://event-stride-server.vercel.app/marathons?sort=desc&limit=6')
+    fetch('https://event-stride-server.vercel.app/marathons?sort=desc&limit=8')
       .then(res => res.json())
       .then(data => {
         setMarathons(data);
@@ -30,7 +30,7 @@ const MarathonSection = () => {
         Fuel your passion for running. Sign up for marathons happening near you
         and take the next stride toward greatness.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {marathons.map(marathon => (
           <SingleCard key={marathon._id} marathon={marathon} />
         ))}

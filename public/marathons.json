@@ -76,5 +76,31 @@
     "companyName": "PulseTrack Events",
     "userEmail": "info@pulsetrack.com",
     "createdAt": "2025-06-11"
+  },
+  {
+    "title": "Autumn Valley Marathon",
+    "registrationStartDate": "2025-08-01",
+    "registrationEndDate": "2025-08-25",
+    "marathonStartDate": "2025-09-10",
+    "location": "Denver, CO",
+    "distance": "21km",
+    "description": "Run through vibrant autumn foliage in the Rocky Mountains.",
+    "image": "https://www.starpointco.com/wp-content/uploads/2014/08/autumncolorrun2.jpg",
+    "companyName": "PeakPace Runners",
+    "userEmail": "contact@peakpace.com",
+    "createdAt": "2025-07-01"
+  },
+  {
+    "title": "Midnight City Run",
+    "registrationStartDate": "2025-08-05",
+    "registrationEndDate": "2025-08-30",
+    "marathonStartDate": "2025-09-15",
+    "location": "Chicago, IL",
+    "distance": "10km",
+    "description": "Experience the city lights and nightlife on a unique midnight route.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqZoDiU2B4sC_KErpbggXl129MqZmU6nFU8A&s",
+    "companyName": "UrbanMotion Sports",
+    "userEmail": "admin@urbanmotion.com",
+    "createdAt": "2025-07-02"
   }
 ]
