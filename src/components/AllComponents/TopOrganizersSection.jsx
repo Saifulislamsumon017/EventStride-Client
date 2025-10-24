@@ -33,7 +33,7 @@ const TopOrganizersSection = () => {
   }
 
   return (
-    <div className="py-20">
+    <div className="pt-20">
       <h1 className="text-center text-4xl pb-12">Top Marathon Organizers</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

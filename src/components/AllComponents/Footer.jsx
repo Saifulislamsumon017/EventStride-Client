@@ -30,19 +30,44 @@ const Footer = () => {
             marathons across the globe with ease.
           </p>
           <div className="flex gap-4 mt-4 text-xl">
-            <a href="#" aria-label="Facebook" className="hover:text-[#c0122d]">
+            <a
+              href="https://www.facebook.com/saifulislamsumon017"
+              aria-label="Facebook"
+              target="_blank"
+              className="hover:text-[#c0122d]"
+            >
               <FaFacebookF />
             </a>
-            <a href="#" aria-label="Twitter" className="hover:text-[#c0122d]">
+            <a
+              href="https://x.com/Saifulislam169"
+              aria-label="Twitter"
+              target="_blank"
+              className="hover:text-[#c0122d]"
+            >
               <FaTwitter />
             </a>
-            <a href="#" aria-label="Instagram" className="hover:text-[#c0122d]">
+            <a
+              href="https://www.instagram.com/saifulislam.sumon017"
+              aria-label="Instagram"
+              target="_blank"
+              className="hover:text-[#c0122d]"
+            >
               <FaInstagram />
             </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-[#c0122d]">
+            <a
+              href="https://www.linkedin.com/in/saifulislamsumon"
+              aria-label="LinkedIn"
+              target="_blank"
+              className="hover:text-[#c0122d]"
+            >
               <FaLinkedinIn />
             </a>
-            <a href="#" aria-label="YouTube" className="hover:text-[#c0122d]">
+            <a
+              href="https://www.youtube.com/@saifulislamsumon017"
+              aria-label="YouTube"
+              target="_blank"
+              className="hover:text-[#c0122d]"
+            >
               <FaYoutube />
             </a>
           </div>

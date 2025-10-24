@@ -11,7 +11,7 @@ const UpcomingMarathon = () => {
   }, []);
 
   return (
-    <div className="py-20">
+    <div className="pt-20">
       <h1 className="text-center text-4xl pb-4">Upcoming Registered Events</h1>
       <p className=" w-2/5 mx-auto text-center pb-6">
         Browse scheduled marathons and plan your participation in advance.

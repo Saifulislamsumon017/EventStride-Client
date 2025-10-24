@@ -30,7 +30,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 my-20">
       {stats.map(stat => (
         <div
           key={stat.id}
