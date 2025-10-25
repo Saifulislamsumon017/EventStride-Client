@@ -15,8 +15,6 @@ const HowToJoin = () => {
       return;
     }
 
-    // এখানে তুমি চাইলে API call করতে পারো
-
     Swal.fire({
       icon: 'success',
       title: 'Subscribed!',

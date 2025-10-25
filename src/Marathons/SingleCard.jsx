@@ -15,9 +15,9 @@ const SingleCard = ({ marathon }) => {
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
-    return `${day}:${month}:${year}`;
+    return `${day}/${month}/${year}`;
   }
 
   return (
@@ -29,7 +29,7 @@ const SingleCard = ({ marathon }) => {
       />
       <h2 className="text-xl font-semibold mt-4">{title}</h2>
 
-      <div className="flex items-center space-x-2 my-3 ">
+      <div className="flex items-center space-x-2 my-3">
         <FaLocationDot size={20} />
         <p>{location}</p>
       </div>

@@ -58,7 +58,7 @@ const MarathonDetails = () => {
   }, [_id, user?.email]);
 
   return (
-    <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8 items-center">
+    <div className="min-h-screen max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8  justify-center items-center">
       <Helmet>
         <title>All Marathons | {title}</title>
       </Helmet>
@@ -155,7 +155,7 @@ const MarathonDetails = () => {
             </p>
           ) : isRegistrationOpen ? (
             <Link to={`/marathonRegister/${_id}`}>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+              <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
                 Register Now
               </button>
             </Link>

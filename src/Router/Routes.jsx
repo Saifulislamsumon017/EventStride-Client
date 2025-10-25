@@ -1,4 +1,4 @@
-import MyDashboard from '@/DashboardPages/MyDashboard';
+import MyDashboard from '@/DashboardPages/DashboardHome';
 import Dashboard from '@/Layout/Dashboard';
 import MainLayout from '@/Layout/MainLayout';
 import AllMarathons from '@/ManiPages/AllMarathons';
@@ -25,6 +25,7 @@ import HelpCenter from '@/ManiPages/OthersPage/HelpCenter';
 import TermsofService from '@/ManiPages/OthersPage/TermsofService';
 import PrivacyPolicy from '@/ManiPages/OthersPage/PrivacyPolicy';
 import CookiePolicy from '@/ManiPages/OthersPage/CookiePolicy';
+import DashboardHome from '@/DashboardPages/DashboardHome';
 
 export const router = createBrowserRouter([
   {
@@ -106,7 +107,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: MyDashboard,
+        Component: DashboardHome,
       },
       {
         path: 'dashboard/addmarathon',

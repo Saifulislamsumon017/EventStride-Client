@@ -1,5 +1,5 @@
-import AuthUser from '@/Hoocks/AuthUser';
 import React, { useEffect, useState } from 'react';
+import AuthUser from '@/Hoocks/AuthUser';
 import Loading from './Loading';
 import SingleCard from '@/Marathons/SingleCard';
 
@@ -8,15 +8,20 @@ const MarathonSection = () => {
   const { loading, setLoading } = AuthUser();
 
   useEffect(() => {
-    // API fetch
-    fetch('https://event-stride-server.vercel.app/marathons?sort=desc&limit=8')
-      .then(res => res.json())
+    // Fetch only non-upcoming marathons
+    fetch(
+      'https://event-stride-server.vercel.app/marathons?upcoming=false&sort=desc&limit=8'
+    )
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        return res.json();
+      })
       .then(data => {
         setMarathons(data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error('Error fetching marathons:', error);
+      .catch(err => {
+        console.error('Error fetching marathons:', err);
         setLoading(false);
       });
   }, []);
@@ -26,7 +31,7 @@ const MarathonSection = () => {
   return (
     <div className="pt-20">
       <h2 className="text-4xl text-center pb-4">Chase Your Next Finish Line</h2>
-      <p className=" w-2/5 mx-auto text-center pb-8">
+      <p className="w-2/5 mx-auto text-center pb-8">
         Fuel your passion for running. Sign up for marathons happening near you
         and take the next stride toward greatness.
       </p>
